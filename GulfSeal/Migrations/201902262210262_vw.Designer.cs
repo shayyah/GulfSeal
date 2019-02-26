@@ -7,13 +7,13 @@ namespace GulfSeal.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class v1 : IMigrationMetadata
+    public sealed partial class vw : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(v1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(vw));
         
         string IMigrationMetadata.Id
         {
-            get { return "201902231452200_v1"; }
+            get { return "201902262210262_vw"; }
         }
         
         string IMigrationMetadata.Source
