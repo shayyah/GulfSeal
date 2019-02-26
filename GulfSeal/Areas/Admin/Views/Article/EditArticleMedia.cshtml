@@ -1,0 +1,112 @@
+﻿@model int
+
+<link href="~/Content/dropzone/dropzone.css" rel="stylesheet" />
+
+
+
+
+<style>
+    .dropzone {
+        background: lightgray;
+        border: black dashed 3px;
+        width: 250px;
+        align-content: center;
+        text-align: center;
+        color: black;
+        /*margin-left: auto;
+            margin-right: auto;
+            padding: 50px;*/
+    }
+</style>
+
+
+
+
+
+
+    <div class="form-group">
+        <div style="margin-left:20px;margin-right:20px;">
+            <form action="../../Article/delete_upload_image" enctype="multipart/form-data" method="post" id="my-awesome-dropzone" class="dropzone col-md-10">
+                <div class="dropzone-previews "></div>
+                <input type="hidden" name="deleted_img_name" id="deleted_img_name" />
+                <input type="hidden" name="id" id="id" value="@Model"/>
+            
+            
+                
+            </form>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" id="ss" value="Edit" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+
+
+
+
+<script src="~/Content/dropzone/jquery-1.11.3.js"></script>
+<script src="~/Content/dropzone/dropzone.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script>
+    var added=false;
+    var deleted_img_name=[];
+    Dropzone.autoDiscover = false;
+    var myDropzone = new Dropzone("#my-awesome-dropzone", {
+        dictRemoveFile:"احذف الصورة",
+        addRemoveLinks: true,
+        autoProcessQueue: false,
+        uploadMultiple: true,
+        parallelUploads: 100,
+        //maxFiles: max_file,
+        init: function () {
+            var data;
+            $.ajax({
+                url:'@Url.Action("EditArticleMedia_", "Article", new { id = Model })',
+                data:{id:@Model},
+                success: function (data) {
+                    alert('llll');
+                    var obj = $.parseJSON(data);
+                    data=obj;
+                    $.each(obj, function (i, v) {
+                        var mockFile = { name: v};
+                        myDropzone.emit("addedfile", mockFile);
+                        myDropzone.createThumbnailFromUrl(mockFile, v);
+                    });
+                }
+            });
+
+            this.on("complete", function (data) {
+                //var res = eval('(' + data.xhr.responseText + ')');
+                var res = JSON.parse(data.xhr.responseText);
+            });
+            this.on("addedfile", function (file) {
+                added = true;
+
+
+            });
+            this.on("removedfile", function (file) {
+                added = false;
+                deleted_img_name.push(file.name);
+                $("#deleted_img_name").val(deleted_img_name);
+            });
+        },
+
+
+        acceptedFiles: "image/jpeg,image/png"
+
+    }); 
+
+    $("#ss").click(function (e) {
+
+        $("#deleted_img_name").val(deleted_img_name);
+        //$('#my-awesome-dropzone').submit();
+        myDropzone.processQueue();
+
+    });
+
+</script>

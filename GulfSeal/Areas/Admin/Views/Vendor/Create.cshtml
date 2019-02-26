@@ -1,0 +1,261 @@
+﻿@model GulfSeal.Models.Vendor
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<style>
+    #source-location-input {
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+
+        font-weight: 300;
+        margin-bottom: 20px;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 400px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+        #source-location-input :focus {
+            border-color: #4d90fe;
+        }
+
+
+    .centerMarkerSource {
+        position: absolute;
+        background: url('../../Content/Img/marker.png') no-repeat;
+        top: 50%;
+        left: 50%;
+        z-index: 1;
+        /*fix offset when needed*/
+        margin-left: -15px;
+        margin-top: -41px;
+        /*size of the image*/
+        height: 41px;
+        width: 30px;
+        cursor: pointer;
+    }
+
+
+    #addressText {
+        display: block;
+        opacity: 0.7;
+        background-color: #fff;
+        z-index: 99;
+        text-align: center;
+    }
+
+    #loading-image {
+        position: absolute;
+        top: 160px;
+        left: 110px;
+        z-index: 100;
+        width: 125px;
+    }
+</style>
+
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Vendor</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+         
+        <input type="hidden" id="Longitude" name="Longitude" value="55.2708"/>
+        <input type="hidden" id="Latitude" name="Latitude" value="25.2048"/>
+      
+        <div class="form-group">
+            @Html.LabelFor(model => model.InsideKSA, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.InsideKSA)
+                    @Html.ValidationMessageFor(model => model.InsideKSA, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+
+        <div id="addressText">
+
+        </div>
+        <div>
+            <input type="text" id="mapInput" class="form-control" aria-label="search">
+        </div>
+
+        <div class="col-md-8">
+            <div id="map" style="width:100%;height:400px;"></div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+@section scripts {
+    <script>
+    var map;
+        function initMap() {
+            var geocoder = new google.maps.Geocoder;
+            var Origin = { lat: 25.2048, lng: 55.2708 };
+
+            $("#Longitude").html("55.2708");
+            $("#Latitude").html("25.2048");
+
+
+            $('#addressText').html("United Arab Emirates - Dubai");
+
+
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 10,
+                center: Origin,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                fullscreenControl: false,
+                mapTypeControl: false,
+                streetViewControl: false
+            });
+
+            ////////////////////////////////////////////////////////////////
+            // Initialize auto complete on source map
+
+            var input = document.getElementById('mapInput');
+            google.maps.event.addDomListener(input, 'keydown', function (event) {
+                if (event.keyCode === 13) {
+                    event.preventDefault();
+                }
+            });
+
+            var autocompleteForSource = new google.maps.places.Autocomplete(input);
+            autocompleteForSource.bindTo('bounds', map);
+            autocompleteForSource.setFields(['address_components', 'geometry', 'icon', 'name']);
+
+
+            autocompleteForSource.addListener('place_changed', function () {
+                var place = autocompleteForSource.getPlace();
+                if (!place.geometry) {
+                    window.alert("No details available for input: '" + place.name + "'");
+                    return;
+                }
+
+                // If the place has a geometry, then present it on a map.
+                if (place.geometry.viewport) {
+                    map.fitBounds(place.geometry.viewport);
+                } else {
+                    map.setCenter(place.geometry.location);
+                    map.setZoom(10);
+                }
+
+                geocodeLatLng(place.geometry.location.lat(), place.geometry.location.lng());
+            });
+
+
+
+            //////////////////////////////////////////////////////////////
+
+
+
+            // Add center flag To first Map
+            $('<div />').addClass('centerMarkerSource').appendTo(map.getDiv())
+                .click(function () {
+                    var that = $(this);
+                    that.data('win').open(map);
+                });
+
+
+            // Add Listner when center start changed
+            map.addListener('dragstart',
+                function () {
+
+                    $("#addressText").css("background", "#fbfbfb");
+
+                    $('#loading-image').show();
+                    $('#addressText').html('');
+
+                    $("#addressLng").html('');
+                    $("#addressLat").html('');
+                    $('#mapInput').val('');
+                });
+
+            // Add Listner when center first Map changed
+            map.addListener('dragend',
+                function () {
+                    window.setTimeout(function () {
+                        var mylng = map.getCenter().lng();
+                        var mylat = map.getCenter().lat();
+
+                        geocodeLatLng(mylat, mylng);
+                    }, 500);
+                });
+
+
+
+
+            function geocodeLatLng(latitiude, longtitude) {
+                var latlng = { lat: latitiude, lng: longtitude };
+
+
+                $('#Longitude').val(latlng.lng);
+                $('#Latitude').val(latlng.lat);
+
+
+                geocoder.geocode({ 'location': latlng },
+                    function (results, status) {
+                        if (status === 'OK') {
+                            if (results[0]) {
+                                var address = results[0].formatted_address;
+
+                                $("#addressText").css("background", "#fff");
+                                $('#loading-image').hide();
+
+                                $('#addressText').html(address);
+                            }
+                        }
+                        else if (status === 'ZERO_RESULTS') {
+                            $('#addressText').html("Non existent address");
+                            $('#loading-image').hide();
+                        }
+                        else if (status === 'OVER_QUERY_LIMIT') {
+                            $('#addressText').html("Service over limit, please try later");
+                            $('#loading-image').hide();
+                        }
+                        else {
+                            $('#addressText').html('Failed due to: ' + status);
+                            $('#loading-image').hide();
+                        }
+                    });
+            }
+        }
+    </script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBl4Pzqz_A5zt10KpJI4urZPothek-Y2a8&libraries=places&callback=initMap" async defer></script>
+
+}

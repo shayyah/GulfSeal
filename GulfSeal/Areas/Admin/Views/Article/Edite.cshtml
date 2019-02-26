@@ -1,0 +1,114 @@
+﻿@model GulfSeal.Models.Article
+
+@{
+    ViewBag.Title = "Edite";
+}
+
+<link href="~/Content/dropzone/dropzone.css" rel="stylesheet" />
+<script src="~/Content/dropzone/dropzone.js"></script>
+<script src="~/Content/dropzone/jquery-1.11.3.js"></script>
+<style>
+    .dropzone {
+        background: lightgray;
+        border: black dashed 3px;
+        width: 250px;
+        align-content: center;
+        text-align: center;
+        color: black;
+        /*margin-left: auto;
+            margin-right: auto;
+            padding: 50px;*/
+    }
+</style>
+<script>
+
+    Dropzone.options.dropzoneForm = {
+        clickable: true,
+        autoProcessQueue: false,
+        dictDefaultMessage: "ضع الملف المستورد هنا",
+        maxFiles: 5,
+
+        init: function () {
+            myDropzone = this;
+
+            $("#submitButton").on("click",
+                function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    myDropzone.processQueue();
+
+                    //myDropzone.uploadFiles([{ name: 'nofiles' }]);
+
+
+                });
+
+            this.on("maxfilesexceeded", function (data) {
+                var res = eval('(' + data.xhr.responseText + ')');
+            });
+            myDropzone.on("maxfilesexceeded", function (file) { this.removeFile(file); });
+
+            this.on("totaluploadprogress", function (file) {
+                $("#loadePrices").css('visibility', 'visible');
+            }),
+                this.on("success", function (file, response) {
+                    $("#loadePrices").css('visibility', 'hidden');
+                })
+        }
+    };
+
+</script>
+
+@Html.ActionLink("Edit Language", "EditArticleLanguages", new { id = Model.Id }) |
+@Html.ActionLink("Edit Media", "EditArticleMedia", new { id = Model.Id }) |
+
+<h2>Edite</h2>
+<img src="@Model.Link" style="width:60px;height:60px;" />
+
+<form action="~/Article/Edite" method="post" enctype="multipart/form-data">
+    {
+    @Html.AntiForgeryToken()
+    <input type="hidden" value="@Model.FileName" id="FileName" name="FileName" />
+    <input type="hidden" value="@Model.Extinstion" id="Extinstion" name="Extinstion" />
+    <input type="hidden" value="@Model.Link" id="Link" name="Link" />
+    <div class="form-horizontal">
+        <h4>Article</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            Replace Master Image
+            <div class="col-md-10">
+                <input type="file" name="filename" id="filename" />
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
