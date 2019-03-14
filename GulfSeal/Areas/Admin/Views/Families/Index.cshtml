@@ -1,0 +1,80 @@
+﻿@model IEnumerable<GulfSeal.Models.Family>
+
+@{
+    ViewBag.Title = "Index";
+}
+ 
+ 
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedAt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastUpdatedAt)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedAt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastUpdatedAt)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+
+    foreach (var product in item.Products.OrderByDescending(x=>x.Rank))
+    {
+
+        <tr>
+            <td>
+                <img src="@product.Link" style="width:75px;height:75px;" />
+            </td>
+            <td>
+                @product.Type
+            </td>
+            <td>
+                @product.Name
+            </td>
+            <td>
+                @product.Thickness
+            </td>
+            <td>
+                @product.Length
+            </td>
+            <td>
+                @product.Width
+            </td>
+            <td>
+                @product.ReinforcedType
+            </td>
+            <td>
+                @product.ReinforcedDensity
+            </td>
+            <td>
+                @product.ServiceType
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditProductLanguages","Products", new { id = item.Id, Area="admin" },null) | 
+                @Html.ActionLink("Delete", "Delete", "Products", new { id = item.Id, Area = "admin" }, null)
+            </td>
+        </tr>
+    } 
+}
+
+</table>

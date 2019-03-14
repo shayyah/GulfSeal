@@ -39,7 +39,7 @@ namespace GulfSeal.Models
         public DbSet<Vendor> Vendors { get; set; }
         public DbSet<Family> Families { get; set; }
         public DbSet<FamilyTransition> FamilyTransitions { get; set; }
-        public DbSet<Product> Products { get; set; }
+        public DbSet<Product> Products { get; set; } 
         public DbSet<ProductTranslation> ProductTranslations { get; set; }
     }
 }

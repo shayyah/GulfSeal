@@ -13,10 +13,13 @@ namespace GulfSeal.Models
         {
             CreatedAt = DateTime.Now;
             LastUpdatedAt = DateTime.Now;
+            Rank = 0;
         }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        public int Rank { get; set; }
 
         [Required]
         public string Name { get; set; }
@@ -47,7 +50,9 @@ namespace GulfSeal.Models
 
         [ForeignKey("FamilyId")]
         public virtual Family Family { get; set; }
-         
+
+
+        public virtual ICollection<ProductTranslation> ProductTranslations { get; set; }
 
     }
 }

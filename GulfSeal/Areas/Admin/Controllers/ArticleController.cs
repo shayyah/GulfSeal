@@ -199,11 +199,9 @@ namespace GulfSeal.Areas.Admin.Controllers
         }
         [HttpPost]
         public ActionResult Edite([Bind(Include = "Id,Title,Description,CreatedAt,LastUpdatedAt,FileName,Link,Extinstion")]Article article)
-        {
-            
+        { 
             try
-            {
-
+            { 
                 var fName = "";
                 foreach (string fileName in Request.Files)
                 {
@@ -213,8 +211,7 @@ namespace GulfSeal.Areas.Admin.Controllers
                     fName = file.FileName;
                     if (file != null && file.ContentLength > 0)
                     {
-
-
+                         
                         var old_originalDirectory = new DirectoryInfo($"{Server.MapPath(@"\")}Files");
                         string old_pathString = System.IO.Path.Combine(old_originalDirectory.ToString(), "Articles");
                         var oldFileName =article.FileName + article.Extinstion;
@@ -222,9 +219,7 @@ namespace GulfSeal.Areas.Admin.Controllers
                         //delete old files
                         if (System.IO.File.Exists(old_path))
                             System.IO.File.Delete(old_path);
-
-
-
+                         
                         var originalDirectory = new DirectoryInfo($"{Server.MapPath(@"\")}Files");
                         string pathString = System.IO.Path.Combine(originalDirectory.ToString(), "Articles");
 
