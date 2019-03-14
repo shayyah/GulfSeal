@@ -293,7 +293,6 @@ C:\Users\خالد\Desktop\GulfSeal\GulfSeal\GulfSeal\obj\Debug\GulfSeal.csproj.G
 C:\Users\خالد\Desktop\GulfSeal\GulfSeal\GulfSeal\obj\Debug\GulfSeal.dll
 C:\Users\خالد\Desktop\GulfSeal\GulfSeal\GulfSeal\obj\Debug\GulfSeal.pdb
 C:\Users\خالد\Desktop\GulfSeal\GulfSeal\GulfSeal\obj\Debug\GulfSeal.csprojResolveAssemblyReference.cache
-C:\Users\Muhammad\Documents\Visual Studio 2017\Projects\GulfSeal\GulfSeal\GulfSeal\obj\Debug\GulfSeal.Migrations.v1.resources
 C:\Users\خالد\Desktop\Projects\GulfSeal\GulfSeal\bin\ApplicationInsights.config
 C:\Users\خالد\Desktop\Projects\GulfSeal\GulfSeal\bin\roslyn\csc.exe
 C:\Users\خالد\Desktop\Projects\GulfSeal\GulfSeal\bin\roslyn\csc.exe.config
@@ -392,3 +391,6 @@ C:\Users\خالد\Desktop\Projects\GulfSeal\GulfSeal\obj\Debug\GulfSeal.dll
 C:\Users\خالد\Desktop\Projects\GulfSeal\GulfSeal\obj\Debug\GulfSeal.pdb
 C:\Users\خالد\Desktop\Projects\GulfSeal\GulfSeal\obj\Debug\GulfSeal.Migrations.v1.resources
 C:\Users\خالد\Desktop\Projects\GulfSeal\GulfSeal\obj\Debug\GulfSeal.csproj.GenerateResource.Cache
+C:\Users\Muhammad\Documents\Visual Studio 2017\Projects\GulfSeal\GulfSeal\GulfSeal\obj\Debug\GulfSeal.Migrations.vw.resources
+C:\Users\Muhammad\Documents\Visual Studio 2017\Projects\GulfSeal\GulfSeal\GulfSeal\obj\Debug\GulfSeal.Migrations.edit4.resources
+C:\Users\Muhammad\Documents\Visual Studio 2017\Projects\GulfSeal\GulfSeal\GulfSeal\obj\Debug\GulfSeal.Migrations.edit5.resources
