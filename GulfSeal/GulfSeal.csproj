@@ -192,6 +192,7 @@
     <Compile Include="Areas\Admin\Controllers\ArticleController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LanguageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\partenrsController.cs" />
     <Compile Include="Areas\Admin\Controllers\VendorController.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\ArticleContentsViewModels.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -200,9 +201,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201902262210262_vw.cs" />
-    <Compile Include="Migrations\201902262210262_vw.Designer.cs">
-      <DependentUpon>201902262210262_vw.cs</DependentUpon>
+    <Compile Include="Migrations\201903141924181_v1.cs" />
+    <Compile Include="Migrations\201903141924181_v1.Designer.cs">
+      <DependentUpon>201903141924181_v1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -214,6 +215,7 @@
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Media.cs" />
+    <Compile Include="Models\partenrs.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductTranslation.cs" />
     <Compile Include="Models\Vendor.cs" />
@@ -263,6 +265,11 @@
     <Content Include="Areas\Admin\Views\Vendor\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Vendor\Index.cshtml" />
     <Content Include="Content\Img\map\desktop.ini" />
+    <Content Include="Areas\Admin\Views\partenrs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\partenrs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\partenrs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\partenrs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\partenrs\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -331,8 +338,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902262210262_vw.resx">
-      <DependentUpon>201902262210262_vw.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903141924181_v1.resx">
+      <DependentUpon>201903141924181_v1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
