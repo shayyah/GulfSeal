@@ -192,6 +192,8 @@
     <Compile Include="Areas\Admin\Controllers\ArticleController.cs" />
     <Compile Include="Areas\Admin\Controllers\FamiliesController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\InformationController.cs" />
+    <Compile Include="Areas\Admin\Controllers\InformationTypesController.cs" />
     <Compile Include="Areas\Admin\Controllers\LanguageController.cs" />
     <Compile Include="Areas\Admin\Controllers\partenrsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
@@ -204,9 +206,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903142203444_v1.cs" />
-    <Compile Include="Migrations\201903142203444_v1.Designer.cs">
-      <DependentUpon>201903142203444_v1.cs</DependentUpon>
+    <Compile Include="Migrations\201903162111566_edit-2.cs" />
+    <Compile Include="Migrations\201903162111566_edit-2.Designer.cs">
+      <DependentUpon>201903162111566_edit-2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -215,6 +217,8 @@
     <Compile Include="Models\Family.cs" />
     <Compile Include="Models\FamilyTransition.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Information.cs" />
+    <Compile Include="Models\InformationType.cs" />
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Media.cs" />
@@ -242,6 +246,7 @@
     <Content Include="Content\Img\map\markerD.png" />
     <Content Include="Content\Img\map\markerS.png" />
     <Content Include="Content\Img\marker.png" />
+    <Content Include="Content\markerclusterer.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -268,20 +273,27 @@
     <Content Include="Areas\Admin\Views\Vendor\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Vendor\Index.cshtml" />
     <Content Include="Content\Img\map\desktop.ini" />
-    <Content Include="Areas\Admin\Views\partenrs\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\partenrs\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\partenrs\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\partenrs\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\partenrs\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Families\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Families\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Families\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Families\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Products\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Products\CreateProductLanguages.cshtml" />
     <Content Include="Areas\Admin\Views\Products\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Products\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\CreateProductLanguages.cshtml" />
     <Content Include="Areas\Admin\Views\Products\EditProductLanguages.cshtml" />
+    <Content Include="Areas\Admin\Views\InformationTypes\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\InformationTypes\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\InformationTypes\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\InformationTypes\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\InformationTypes\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Information\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Information\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\partenrs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\partenrs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\partenrs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\partenrs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\partenrs\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -350,8 +362,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903142203444_v1.resx">
-      <DependentUpon>201903142203444_v1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903162111566_edit-2.resx">
+      <DependentUpon>201903162111566_edit-2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

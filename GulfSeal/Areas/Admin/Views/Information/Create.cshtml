@@ -1,0 +1,121 @@
+﻿@model GulfSeal.Models.Information
+
+<link href="~/Content/dropzone/dropzone.css" rel="stylesheet" />
+
+
+<style>
+    .dropzone {
+        background: lightgray;
+        border: black dashed 3px;
+        width: 250px;
+        align-content: center;
+        text-align: center;
+        color: black;
+        /*margin-left: auto;
+            margin-right: auto;
+            padding: 50px;*/
+    }
+</style>
+
+ 
+<h2>Create</h2>
+
+
+<div class="form-group"> 
+    <label class = "control-label col-md-2">Title</label>
+    <div class="col-md-10"> 
+        <input type="text" name="TitleTemp" id="TitleTemp" class="form-control" />
+    </div>
+</div>
+
+
+<div class="form-group">
+    <div style="margin-left:20px;margin-right:20px;">
+        <form action="../../Information/Create" enctype="multipart/form-data" method="post" id="my-awesome-dropzone" class="dropzone col-md-10">
+            <div class="dropzone-previews "></div> 
+            <input type="hidden" name="InformationTypeId" value="@ViewBag.InformationTypeId" />
+            <input type="hidden" name="Title" id="Title" />
+
+
+
+        </form>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" id="ss" value="Edit" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</div>
+ 
+
+<input type="hidden" name="Type" id="Type" value="@ViewBag.informationType" />
+    
+ 
+
+
+
+
+<script src="~/Content/dropzone/jquery-1.11.3.js"></script>
+<script src="~/Content/dropzone/dropzone.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script>
+    var added=false;
+    var deleted_img_name=[];
+    Dropzone.autoDiscover = false;
+    var myDropzone = new Dropzone("#my-awesome-dropzone", {
+        dictRemoveFile:"احذف الصورة",
+        addRemoveLinks: true,
+        autoProcessQueue: false,
+        uploadMultiple: true,
+        parallelUploads: 100, 
+        acceptedFiles: GetType(),
+        init: function () { 
+
+            this.on("complete", function (data) { 
+                //var res = JSON.parse(data.xhr.responseText);
+
+                var url ="../../Admin/Information/Index?InformationTypeId=@ViewBag.InformationTypeId";
+                location.href = url;
+            });
+            this.on("addedfile", function (file) {
+                added = true;
+
+
+            });
+            this.on("removedfile", function (file) {
+                added = false;
+                deleted_img_name.push(file.name);
+                $("#deleted_img_name").val(deleted_img_name);
+            });
+        }
+
+
+
+    });
+
+    $("#ss").click(function (e) {
+
+        $("#Title").val($("#TitleTemp").val());
+        //$('#my-awesome-dropzone').submit();
+        myDropzone.processQueue();
+
+    });
+
+
+    function GetType()
+    {
+        var type = $("#Type").val();
+
+        if (type == "pic") {
+            return 'image/*';
+        }
+        else if (type == "video") {
+            return ".mp4,.mkv,.avi";
+        }
+        else
+        {
+            return 'application/pdf';
+        } 
+    }
+</script>
