@@ -190,20 +190,23 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ArticleController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FamiliesController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LanguageController.cs" />
     <Compile Include="Areas\Admin\Controllers\partenrsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\VendorController.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\ArticleContentsViewModels.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\ProductViewModels.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903141924181_v1.cs" />
-    <Compile Include="Migrations\201903141924181_v1.Designer.cs">
-      <DependentUpon>201903141924181_v1.cs</DependentUpon>
+    <Compile Include="Migrations\201903142203444_v1.cs" />
+    <Compile Include="Migrations\201903142203444_v1.Designer.cs">
+      <DependentUpon>201903142203444_v1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -270,6 +273,15 @@
     <Content Include="Areas\Admin\Views\partenrs\Details.cshtml" />
     <Content Include="Areas\Admin\Views\partenrs\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\partenrs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Families\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Families\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Families\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Families\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\CreateProductLanguages.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Products\EditProductLanguages.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -338,8 +350,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903141924181_v1.resx">
-      <DependentUpon>201903141924181_v1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903142203444_v1.resx">
+      <DependentUpon>201903142203444_v1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
