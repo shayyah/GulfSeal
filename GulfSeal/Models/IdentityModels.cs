@@ -41,5 +41,7 @@ namespace GulfSeal.Models
         public DbSet<FamilyTransition> FamilyTransitions { get; set; }
         public DbSet<Product> Products { get; set; } 
         public DbSet<ProductTranslation> ProductTranslations { get; set; }
+        public DbSet<InformationType> InformationTypes { get; set; }
+        public DbSet<Information> Informations { get; set; }
     }
 }
