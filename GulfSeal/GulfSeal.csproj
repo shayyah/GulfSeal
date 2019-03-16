@@ -195,6 +195,7 @@
     <Compile Include="Areas\Admin\Controllers\InformationController.cs" />
     <Compile Include="Areas\Admin\Controllers\InformationTypesController.cs" />
     <Compile Include="Areas\Admin\Controllers\LanguageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\partenrsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\VendorController.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\ArticleContentsViewModels.cs" />
@@ -205,21 +206,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201902262210262_vw.cs" />
-    <Compile Include="Migrations\201902262210262_vw.Designer.cs">
-      <DependentUpon>201902262210262_vw.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903141938252_edit4.cs" />
-    <Compile Include="Migrations\201903141938252_edit4.Designer.cs">
-      <DependentUpon>201903141938252_edit4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903142027352_edit5.cs" />
-    <Compile Include="Migrations\201903142027352_edit5.Designer.cs">
-      <DependentUpon>201903142027352_edit5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201903162013027_edit-1.cs" />
-    <Compile Include="Migrations\201903162013027_edit-1.Designer.cs">
-      <DependentUpon>201903162013027_edit-1.cs</DependentUpon>
+    <Compile Include="Migrations\201903162111566_edit-2.cs" />
+    <Compile Include="Migrations\201903162111566_edit-2.Designer.cs">
+      <DependentUpon>201903162111566_edit-2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -233,6 +222,7 @@
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Media.cs" />
+    <Compile Include="Models\partenrs.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductTranslation.cs" />
     <Compile Include="Models\Vendor.cs" />
@@ -256,6 +246,7 @@
     <Content Include="Content\Img\map\markerD.png" />
     <Content Include="Content\Img\map\markerS.png" />
     <Content Include="Content\Img\marker.png" />
+    <Content Include="Content\markerclusterer.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -298,6 +289,11 @@
     <Content Include="Areas\Admin\Views\InformationTypes\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Information\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Information\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\partenrs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\partenrs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\partenrs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\partenrs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\partenrs\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -366,17 +362,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902262210262_vw.resx">
-      <DependentUpon>201902262210262_vw.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903141938252_edit4.resx">
-      <DependentUpon>201903141938252_edit4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903142027352_edit5.resx">
-      <DependentUpon>201903142027352_edit5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903162013027_edit-1.resx">
-      <DependentUpon>201903162013027_edit-1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903162111566_edit-2.resx">
+      <DependentUpon>201903162111566_edit-2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

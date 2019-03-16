@@ -74,6 +74,9 @@
 
             this.on("complete", function (data) { 
                 //var res = JSON.parse(data.xhr.responseText);
+
+                var url ="../../Admin/Information/Index?InformationTypeId=@ViewBag.InformationTypeId";
+                location.href = url;
             });
             this.on("addedfile", function (file) {
                 added = true;

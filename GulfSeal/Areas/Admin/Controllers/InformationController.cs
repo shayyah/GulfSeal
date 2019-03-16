@@ -81,14 +81,13 @@ namespace GulfSeal.Areas.Admin.Controllers
                 }
 
                 db.SaveChanges();
-
-                return (information);
+                return new JsonResult();
             }
 
 
             ViewBag.InformationTypeId = information.InformationTypeId;
             ViewBag.informationType = db.InformationTypes.Find(information.InformationTypeId).Extentions.ToString();
-            return View(information);
+            return new JsonResult();
 
         }
 
