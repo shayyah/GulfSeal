@@ -1,0 +1,121 @@
+﻿@model GulfSeal.Models.partenrs
+
+@{
+    ViewBag.Title = "Create";
+}
+<link href="~/Content/dropzone/dropzone.css" rel="stylesheet" />
+<script src="~/Content/dropzone/dropzone.js"></script>
+<script src="~/Content/dropzone/jquery-1.11.3.js"></script>
+
+<h2>Parnter</h2>
+
+<style>
+    .dropzone {
+        background: lightgray;
+        border: black dashed 3px;
+        width: 250px;
+        align-content: center;
+        text-align: center;
+        color: black;
+        /*margin-left: auto;
+            margin-right: auto;
+            padding: 50px;*/
+    }
+</style>
+
+
+
+  
+    
+  <div class="form-horizontal">
+        <h4> Add partenr</h4>
+        <hr />
+        <div class="form-group">
+            @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", @id="name_" } })
+                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.order, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.order, new { htmlAttributes = new { @class = "form-control" ,@id = "order_" } })
+                @Html.ValidationMessageFor(model => model.order, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+      
+      <div class="form-group">
+          <label class="control-label col-md-2" for="name">Partner Logo</label>
+          <div class="col-md-offset-2 col-md-10">
+              <form action="~/partenrs/Create" method="post" enctype="multipart/form-data" id="dropzoneForm" class="dropzone">
+                  @Html.AntiForgeryToken()
+                  <input type="hidden" name="LogoLink" id="LogoLink" value="1" />
+                  <input type="hidden" name="name" id="name" value="1" />
+                  <input type="hidden" name="order" id="order" value="1" />
+
+                  <div class="fallback">
+                      <input name="file" type="file" multiple />
+                      <input type="submit" value="Upload" />
+                  </div>
+             
+              </form>
+          </div>
+      </div>
+      <div class="form-group">
+          <div class="col-md-offset-2 col-md-10">
+              <input type="submit" id="submite" value="Create" class="btn btn-default" />
+          </div>
+      </div>
+    </div>
+
+@Html.Hidden("RedirectTo", "../../Admin/partenrs/Index");
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+<script>
+    var addedFile = false;
+    Dropzone.options.dropzoneForm = {
+        clickable: true,
+        autoProcessQueue: false,
+        dictDefaultMessage: "Add Partner Logo",
+        maxFiles: 1,
+        addRemoveLinks: true,
+        init: function () {
+            myDropzone = this;
+            this.on("addedfile", function (file) {
+                addedFile = true;
+                }),
+            this.on("removedfile", function (file) {
+                addedFile = false;
+                }),
+          
+            this.on("complete", function (data) {
+                var url = $("#RedirectTo").val();
+                location.href = url;
+            });
+        }
+    };
+
+
+</script>
+<script>
+
+    $('#submite').click(function (e) {
+        if (addedFile)
+        {
+            $('#name').val($('#name_').val());
+            $('#order').val($('#order_').val());
+            myDropzone.processQueue();
+        }
+        else {
+            alert('Please add partern Logo to submit')
+        }
+    })
+
+</script>
