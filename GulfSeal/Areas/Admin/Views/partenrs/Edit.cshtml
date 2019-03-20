@@ -46,11 +46,12 @@
     <div class="form-group">
         <label class="control-label col-md-2" for="name">Partner Logo</label>
         <div class="col-md-offset-2 col-md-10">
-            <form action="~/partenrs/Create" method="post" enctype="multipart/form-data" id="dropzoneForm" class="dropzone">
+            <form action="~/partenrs/Edit" method="post" enctype="multipart/form-data" id="dropzoneForm" class="dropzone">
                 @Html.AntiForgeryToken()
                 <input type="hidden" name="LogoLink" id="LogoLink" value="@Model.LogoLink" />
                 <input type="hidden" name="name" id="name" value="@Model.name" />
                 <input type="hidden" name="order" id="order" value="@Model.order" />
+                <input type="hidden" name="Id" id="Id" value="@Model.Id" />
 
                 <div class="fallback">
                     <input name="file" type="file" multiple />
@@ -73,7 +74,8 @@
 
 
 <script>
-    var addedFile = false;
+    var addedFile = true;
+    var orginal_file = false;
     Dropzone.options.dropzoneForm = {
         clickable: true,
         autoProcessQueue: false,
@@ -81,19 +83,17 @@
         maxFiles: 1,
         addRemoveLinks: true,
         init: function () {
-
-
              $.ajax({
                 url:'@Url.Action("GetPartnerMedia", "partenrs" )',
                 data:{id:@Model.Id},
                 success: function (data) {
-                    alert('llll');
                     var obj = $.parseJSON(data);
                     data=obj;
                     $.each(obj, function (i, v) {
                         var mockFile = { name: v};
                         myDropzone.emit("addedfile", mockFile);
                         myDropzone.createThumbnailFromUrl(mockFile, v);
+                         orginal_file = true;
                     });
                 }
             });
@@ -103,15 +103,17 @@
             myDropzone = this;
             this.on("addedfile", function (file) {
                 addedFile = true;
-            }),
-                this.on("removedfile", function (file) {
-                    addedFile = false;
-                }),
 
-                this.on("complete", function (data) {
-                    var url = $("#RedirectTo").val();
-                    location.href = url;
-                });
+            }),
+            this.on("removedfile", function (file) {
+                addedFile = false;
+
+            }),
+
+            this.on("complete", function (data) {
+                var url = '@Url.Action("Index", "partenrs" )'
+                location.href = url;
+            });
         }
     };
 
@@ -120,11 +122,24 @@
 <script>
 
     $('#submite').click(function (e) {
+      
         if (addedFile) {
             $('#name').val($('#name_').val());
             $('#order').val($('#order_').val());
-            myDropzone.processQueue();
+            
+            if (myDropzone.getQueuedFiles().length > 0) {
+                
+                myDropzone.processQueue();
+            }
+            else
+            {
+                $('#dropzoneForm').submit();
+            }
         }
+        //else if (orginal_file & !addedFile) {
+
+        //    $('#dropzoneForm').submit();
+        //}
         else {
             alert('Please add partern Logo to submit')
         }

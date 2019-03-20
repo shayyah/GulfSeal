@@ -29,9 +29,7 @@ namespace GulfSeal.Models
         {
             return new ApplicationDbContext();
         }
-
-
-
+        
         public DbSet<Article> Articles { get; set; }
         public DbSet<ArticleContent> ArticleContents { get; set; }
         public DbSet<Language> Languages { get; set; }
@@ -41,9 +39,11 @@ namespace GulfSeal.Models
         public DbSet<FamilyTransition> FamilyTransitions { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<partenrs> partenrs { get; set; }
-        public DbSet<Product> Products { get; set; }
         public DbSet<ProductTranslation> ProductTranslations { get; set; }
         public DbSet<InformationType> InformationTypes { get; set; }
         public DbSet<Information> Informations { get; set; }
+        
+
+
     }
 }

@@ -26,7 +26,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.LogoLink)
+            <img src="@item.LogoLink" style="width:60px;height:60px;" />
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.name)
