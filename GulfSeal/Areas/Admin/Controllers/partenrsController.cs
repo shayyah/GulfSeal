@@ -122,9 +122,68 @@ namespace GulfSeal.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                try
+                {
+                    var fName = "";
+                    foreach (string fileName in Request.Files)
+                    {
+                        Guid imageName = Guid.NewGuid();
+
+                        HttpPostedFileBase file = Request.Files[fileName];
+                        fName = file.FileName;
+                        if (file != null && file.ContentLength > 0)
+                        {
+                            var old_originalDirectory = new DirectoryInfo($"{Server.MapPath(@"\")}Files");
+                            string old_pathString = System.IO.Path.Combine(old_originalDirectory.ToString(), "partenrs");
+                            //C:\\Users\\خالد\\Desktop\\Projects\\GulfSeal\\GulfSeal\\Files\\partenrs"
+                            //"http://localhost:49944//Files/partenrs/14792958-a7d1-4dac-a903-a78b8dac1912.jpg"
+                            var oldFileName = partenrs.LogoLink.Split('/').Last().ToString();
+
+
+
+                            var old_path = old_pathString+"\\"+ oldFileName;
+
+                            //delete old files
+                            if (System.IO.File.Exists(old_path))
+                                System.IO.File.Delete(old_path);
+
+
+                            //add new logo
+                            var originalDirectory = new DirectoryInfo($"{Server.MapPath(@"\")}Files");
+                            string pathString = System.IO.Path.Combine(originalDirectory.ToString(), "partenrs");
+
+                            string extension = Path.GetExtension(file.FileName);
+                            var newFileName = imageName + extension;
+
+                            bool isExists = System.IO.Directory.Exists(pathString);
+
+                            if (!isExists)
+                                System.IO.Directory.CreateDirectory(pathString);
+
+
+                            var path = $"{pathString}\\{newFileName}";
+                            file.SaveAs(path);
+
+
+                            string baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority +
+                                Request.ApplicationPath.TrimEnd('/') + "/";
+
+
+
+
+                            partenrs.LogoLink = baseUrl + "/Files/partenrs/" + newFileName;
+                            
+
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    return View(partenrs);
+                }
                 db.Entry(partenrs).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "partenrs", new { Area = "Admin" });
             }
             return View(partenrs);
         }
@@ -168,8 +227,6 @@ namespace GulfSeal.Areas.Admin.Controllers
             string image_name = image_name_with_extention.Split('.').First();
             db.partenrs.Remove(partenrs);
             db.SaveChanges();
-
-
 
             var old_originalDirectory = new DirectoryInfo($"{Server.MapPath(@"\")}Files");
             string old_pathString = System.IO.Path.Combine(old_originalDirectory.ToString(), "partenrs");
