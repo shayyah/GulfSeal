@@ -199,6 +199,7 @@
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\VendorController.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\ArticleContentsViewModels.cs" />
+    <Compile Include="Areas\Admin\Models\ViewModels\InformationViewModels.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\ProductViewModels.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -210,6 +211,14 @@
     <Compile Include="Migrations\201903162111566_edit-2.Designer.cs">
       <DependentUpon>201903162111566_edit-2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903182005172_edit-5.cs" />
+    <Compile Include="Migrations\201903182005172_edit-5.Designer.cs">
+      <DependentUpon>201903182005172_edit-5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903202103552_edit-9.cs" />
+    <Compile Include="Migrations\201903202103552_edit-9.Designer.cs">
+      <DependentUpon>201903202103552_edit-9.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Article.cs" />
@@ -218,6 +227,7 @@
     <Compile Include="Models\FamilyTransition.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Information.cs" />
+    <Compile Include="Models\InformationTranslation.cs" />
     <Compile Include="Models\InformationType.cs" />
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -263,7 +273,6 @@
     <Content Include="Areas\Admin\Views\Language\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Language\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Article\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Article\CreateArticleLanguages.cshtml" />
     <Content Include="Areas\Admin\Views\Article\Edite.cshtml" />
     <Content Include="Areas\Admin\Views\Article\EditArticleLanguages.cshtml" />
     <Content Include="Areas\Admin\Views\Article\EditArticleMedia.cshtml" />
@@ -294,6 +303,11 @@
     <Content Include="Areas\Admin\Views\partenrs\Details.cshtml" />
     <Content Include="Areas\Admin\Views\partenrs\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\partenrs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Information\EditInformationTranslation.cshtml" />
+    <Content Include="Areas\Admin\Views\Information\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Language\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Language\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Article\Delete.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -364,6 +378,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201903162111566_edit-2.resx">
       <DependentUpon>201903162111566_edit-2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903182005172_edit-5.resx">
+      <DependentUpon>201903182005172_edit-5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903202103552_edit-9.resx">
+      <DependentUpon>201903202103552_edit-9.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

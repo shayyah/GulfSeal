@@ -66,7 +66,6 @@
 <img src="@Model.Link" style="width:60px;height:60px;" />
 
 <form action="~/Article/Edite" method="post" enctype="multipart/form-data">
-    {
     @Html.AntiForgeryToken()
     <input type="hidden" value="@Model.FileName" id="FileName" name="FileName" />
     <input type="hidden" value="@Model.Extinstion" id="Extinstion" name="Extinstion" />

@@ -93,43 +93,10 @@ namespace GulfSeal.Areas.Admin.Controllers
 
 
 
-            return RedirectToAction("CreateArticleLanguages", "Article", new {id= article.Id, area = "Admin" });
+            return RedirectToAction("EditArticleLanguages", "Article", new {id= article.Id, area = "Admin" });
              
         }
-
-        public ActionResult CreateArticleLanguages(int id)
-        {
-
-            ViewBag.Languages = db.Languages.ToList();
-            ViewBag.articleId = id;
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult CreateArticleLanguages(List<ArticleContent> ArticleContents, int articleId)
-        {
-
-            foreach (ArticleContent articleCon in ArticleContents)
-            {
-                ArticleContent articleContent = new ArticleContent
-                {
-                    ArticleId = articleId,
-                    Title = articleCon.Title,
-                    Description = articleCon.Description,
-                    LanguageId = articleCon.LanguageId
-                };
-
-                if(articleContent.Title != null && articleContent.Title !=""
-                    && articleContent.Description != null && articleContent.Description != "")
-                    db.ArticleContents.Add(articleContent);
-
-            }
-            db.SaveChanges();
-
-
-            return RedirectToAction("UploadFiles", "Article", new { articleId = articleId, area = "Admin" }); 
-        }
-
+         
         public ActionResult UploadFiles(int articleId)
         { 
             return View(articleId);
@@ -260,61 +227,72 @@ namespace GulfSeal.Areas.Admin.Controllers
         {
             ViewBag.Languages = db.Languages.ToList();
             ViewBag.articleId = id;
-            ArticleContentsViewModels acvm = new ArticleContentsViewModels();
-            acvm.ArticleContents = db.ArticleContents.Where(x => x.ArticleId == id).ToList();
-            //تشيك اذا كان عدد اللغات يساوي عدد اللغات المضافة الى المقالة
-            if(db.Languages.Count()== db.ArticleContents.Where(x => x.ArticleId == id).Count())
-            {
-                return View(acvm);
-            }
-            else
-            {
-                foreach (var x in db.Languages.ToList())
-                {
-                    bool lang_added_to_article = false;
-                    foreach(var a in acvm.ArticleContents )
-                    {
-                        if(x.Id == a.LanguageId)
-                        {
-                            lang_added_to_article = true;
-                        }
-                        
-                    }
-                    if(!lang_added_to_article)
-                    {
-                        ArticleContent temp = new ArticleContent();
-                        temp.ArticleId = id;
-                        temp.LanguageId = x.Id ;
-                        temp.Description = "-";
-                        temp.Title = "-";
-                        db.ArticleContents.Add(temp);
-                    }
-                }
-                try
-                {
-                    db.SaveChanges();
-                }
-                catch (Exception exception)
-                {
+            ArticleContentsViewModels model = new ArticleContentsViewModels();
+            List<ArticleContent> ArticleContents = db.ArticleContents.Where(x => x.ArticleId == id).ToList();
 
+            List<ArticleContentsWithLanguagesViewModel> ArticleContentsWithLanguages
+                = new List<ArticleContentsWithLanguagesViewModel>();
+
+            foreach (var lan in db.Languages.ToList())
+            {
+                ArticleContentsWithLanguagesViewModel temp = new ArticleContentsWithLanguagesViewModel();
+                temp.LanguageId = lan.Id;
+                temp.LanguageName = lan.Name;
+                if (ArticleContents.Where(x => x.LanguageId == lan.Id).FirstOrDefault() == null)
+                {
+                    temp.ArticleContents = new ArticleContent();
                 }
-               
-                acvm.ArticleContents = db.ArticleContents.Where(x => x.ArticleId == id).ToList();
-                return View(acvm);
+                else
+                {
+                    temp.ArticleContents = ArticleContents.Where(x => x.LanguageId == lan.Id).FirstOrDefault();
+                }
+
+                ArticleContentsWithLanguages.Add(temp);
             }
+            model.ArticleContentsWithLanguages = ArticleContentsWithLanguages;
+
+            return View(model);
+          
             
         }
 
         [HttpPost]
-        public ActionResult EditArticleLanguages(List<ArticleContent> ArticleContents, int articleId)
+        public ActionResult EditArticleLanguages(List<ArticleContentsWithLanguagesViewModel> ArticleContentsWithLanguages
+            ,int articleId)
         {
 
-            foreach (ArticleContent articleCon in ArticleContents)
+            foreach (ArticleContentsWithLanguagesViewModel ArticleContentsWithLanguage in ArticleContentsWithLanguages)
             {
-                articleCon.ArticleId = articleId;
-                if (articleCon.Title != null && articleCon.Title != ""
-                    && articleCon.Description != null && articleCon.Description != "")
-                    db.Entry(articleCon).State = EntityState.Modified;
+
+                if (ArticleContentsWithLanguage.ArticleContents.Title != null
+                    && ArticleContentsWithLanguage.ArticleContents.Title != "")
+                {
+
+                    ArticleContent old = db.ArticleContents
+                        .Where(x => x.LanguageId == ArticleContentsWithLanguage.ArticleContents.LanguageId
+                            && x.ArticleId == ArticleContentsWithLanguage.ArticleContents.ArticleId).FirstOrDefault();
+
+                    if (old == null)
+                    {
+                        db.ArticleContents.Add(ArticleContentsWithLanguage.ArticleContents);
+                    }
+                    else
+                    {
+                        old.Title = ArticleContentsWithLanguage.ArticleContents.Title;
+                    }
+                }
+                else
+                {
+                    ArticleContent old = db.ArticleContents
+                        .Where(x => x.LanguageId == ArticleContentsWithLanguage.ArticleContents.LanguageId
+                            && x.ArticleId == ArticleContentsWithLanguage.ArticleContents.ArticleId).FirstOrDefault();
+
+                    if (old != null)
+                    {
+                        db.ArticleContents.Remove(old);
+                    }
+                }
+
             }
             db.SaveChanges();
 
@@ -421,5 +399,48 @@ namespace GulfSeal.Areas.Admin.Controllers
             return "";
 
         }
+
+
+
+
+        public ActionResult Delete(int id)
+        {
+            return View(db.Articles.Find(id));
+        }
+
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
+        {
+
+            Article article = db.Articles.Find(id);
+
+            var old_originalDirectory = new DirectoryInfo($"{Server.MapPath(@"\")}Files");
+            string old_pathString = System.IO.Path.Combine(old_originalDirectory.ToString(), "Articles");
+            var oldFileName = article.FileName;
+            var old_path = $"{old_pathString}\\{oldFileName}";
+            //delete old files
+            if (System.IO.File.Exists(old_path))
+                System.IO.File.Delete(old_path);
+
+
+            foreach (Media media in db.Medias.Where(x=>x.ArticleId == id).ToList())
+            {
+                old_originalDirectory = new DirectoryInfo($"{Server.MapPath(@"\")}Files");
+                old_pathString = System.IO.Path.Combine(old_originalDirectory.ToString(), "Articles");
+                oldFileName = media.FileName;
+                old_path = $"{old_pathString}\\{oldFileName}";
+                //delete old files
+                if (System.IO.File.Exists(old_path))
+                    System.IO.File.Delete(old_path); 
+            }
+
+
+            db.Articles.Remove(article);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Article", new { area = "Admin" });
+        }
+
+
     }
 }

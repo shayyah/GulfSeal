@@ -21,41 +21,33 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         @{ int i = 0;}
-        @foreach (var language in ViewBag.Languages)
+        @foreach (var content in Model.ArticleContentsWithLanguages)
         {
+
             <div class="form-group">
-                @language.Name
+                @content.LanguageName
             </div>
-            <input type="hidden" id="ArticleContents_@(i)__LanguageId" name="ArticleContents[@(i)].LanguageId" value="@language.Id" />
-            
-            if (Model.ArticleContents.Count() >= i + 1)
-            {
-                <input type="hidden" id="ArticleContents_@(i)__Id" name="ArticleContents[@(i)].Id" value="@Model.ArticleContents[i].Id" />
-                <div class="form-group">
-                    Title
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.ArticleContents[i].Title, new { htmlAttributes = new { @class = "form-control" } })
-                    </div>
-                </div>
-                <div class="form-group">
-                    Description
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.ArticleContents[i].Description, new { htmlAttributes = new { @class = "form-control" } })
-                    </div>
-                </div>
-            }
 
-            else
-            {
-                <input type="text" id="Title" name="Title" />
-                <input type="text" id="Description" name="Description" />
-                <hr />
+            <input type="hidden" id="ArticleContentsWithLanguages_@(i)__ArticleContents_LanguageId" name="ArticleContentsWithLanguages[@(i)].ArticleContents.LanguageId" value="@content.LanguageId" />
+            <input type="hidden" id="ArticleContentsWithLanguages_@(i)__ArticleContents_ArticleId" name="ArticleContentsWithLanguages[@(i)].ArticleContents.ArticleId" value="@ViewBag.articleId" />
 
-            }
+
+            <div class="form-group">
+                Name
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ArticleContentsWithLanguages[i].ArticleContents.Title, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group">
+                Description
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ArticleContentsWithLanguages[i].ArticleContents.Description, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
             i = i + 1;
         }
-
-
+         
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Edit" class="btn btn-default" />

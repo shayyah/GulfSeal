@@ -1,0 +1,80 @@
+﻿@model GulfSeal.Models.Language
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Language</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Abbreviation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Abbreviation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FlagImageUrl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FlagImageUrl)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FlagImageName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FlagImageName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RTL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RTL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastUpdatedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastUpdatedAt)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -13,7 +13,7 @@
     <tr>
 
         <th>
-            @Html.DisplayNameFor(model => model.Flag)
+            Flag
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -36,7 +36,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            <img src="@item.Flag" style="width:60px;height:60px;" />
+            <img src="@item.FlagImageUrl" style="width:60px;height:60px;" />
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)

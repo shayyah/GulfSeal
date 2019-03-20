@@ -1,21 +1,20 @@
 ﻿@model GulfSeal.Models.Language
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
 }
 
-<h2>Create</h2>
+<h2>Edit</h2>
 
 
-<form action="~/Language/Create" method="post" enctype="multipart/form-data">
-
-    @Html.AntiForgeryToken()
+<form action="~/Language/Edit" method="post" enctype="multipart/form-data">
 
     <div class="form-horizontal">
         <h4>Language</h4>
         <hr />
-
-
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.FlagImageName)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -23,33 +22,38 @@
                 @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
-        </div> 
+        </div>
+
         <div class="form-group">
             @Html.LabelFor(model => model.Abbreviation, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Abbreviation, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Abbreviation, "", new { @class = "text-danger" })
             </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.RTL, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.RTL, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.RTL, "", new { @class = "text-danger" })
-            </div>
         </div> 
         
 
         <div class="form-group">
-            Flag
+            @Html.LabelFor(model => model.RTL, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="file" name="FlagImageUrl" id="FlagImageUrl" required/>
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.RTL)
+                    @Html.ValidationMessageFor(model => model.RTL, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
 
         <div class="form-group">
+            Flag
+            <div class="col-md-10">
+                <input type="file" name="FlagImageUrl" id="FlagImageUrl" />
+            </div>
+        </div>
+ 
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>

@@ -29,7 +29,8 @@ namespace GulfSeal.Models
 
 
         [Required]
-        public string Flag { get; set; }
+        public string FlagImageUrl { get; set; }
+        public string FlagImageName { get; set; }
 
         public bool RTL { get; set; }
 

@@ -1,5 +1,8 @@
 ﻿@model GulfSeal.Models.Information
 
+@{
+    ViewBag.Title = "Edit";
+}
 <link href="~/Content/dropzone/dropzone.css" rel="stylesheet" />
 
 
@@ -17,25 +20,23 @@
     }
 </style>
 
- 
-<h2>Create</h2>
-
-
-<div class="form-group"> 
-    <label class = "control-label col-md-2">Title</label>
-    <div class="col-md-10"> 
-        <input type="text" name="TitleTemp" id="TitleTemp" class="form-control" />
-    </div>
-</div>
+<h2>Edit</h2>
 
 
 <div class="form-group">
-    <div style="margin-left:20px;margin-right:20px;">
-        <form action="../../Information/Create" enctype="multipart/form-data" method="post" id="my-awesome-dropzone" class="dropzone col-md-10">
-            <div class="dropzone-previews "></div> 
-            <input type="hidden" name="InformationTypeId" value="@ViewBag.InformationTypeId" />
-            <input type="hidden" name="Title" id="Title" />
+    <label class="control-label col-md-2">Title</label>
+    <div class="col-md-10">
+        <input type="text" name="TitleTemp" id="TitleTemp" class="form-control" value="@Model.Title" />
+    </div>
+</div>
 
+<div class="form-group">
+    <div style="margin-left:20px;margin-right:20px;">
+        <form action="../../Information/Edit" enctype="multipart/form-data" method="post" id="my-awesome-dropzone" class="dropzone col-md-10">
+            <div class="dropzone-previews "></div>
+            <input type="hidden" name="InformationTypeId" value="@Model.InformationTypeId" />
+            <input type="hidden" name="Title" id="Title" />
+            <input type="hidden" name="Id" id="Id" value="@Model.Id" />
 
 
         </form>
@@ -46,11 +47,11 @@
         </div>
     </div>
 </div>
- 
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
 
-<input type="hidden" name="Type" id="Type" value="@ViewBag.informationType" />
-    
- 
+
 
 
 
@@ -68,11 +69,11 @@
         addRemoveLinks: true,
         autoProcessQueue: false,
         uploadMultiple: true,
-        parallelUploads: 100, 
+        parallelUploads: 100,
         acceptedFiles: GetType(),
-        init: function () { 
+        init: function () {
 
-            this.on("complete", function (data) { 
+            this.on("complete", function (data) {
                 //var res = JSON.parse(data.xhr.responseText);
 
                 var url ="../../Admin/Information/Index?InformationTypeId=@ViewBag.InformationTypeId";
@@ -88,7 +89,7 @@
                 deleted_img_name.push(file.name);
                 $("#deleted_img_name").val(deleted_img_name);
             });
-        } 
+        }
 
 
     });
@@ -115,6 +116,6 @@
         else
         {
             return 'application/pdf';
-        } 
+        }
     }
 </script>

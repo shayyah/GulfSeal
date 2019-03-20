@@ -44,5 +44,6 @@ namespace GulfSeal.Models
         public DbSet<ProductTranslation> ProductTranslations { get; set; }
         public DbSet<InformationType> InformationTypes { get; set; }
         public DbSet<Information> Informations { get; set; }
+        public DbSet<InformationTranslation> InformationTranslations { get; set; }
     }
 }

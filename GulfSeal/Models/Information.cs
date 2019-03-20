@@ -37,5 +37,9 @@ namespace GulfSeal.Models
 
         [ForeignKey("InformationTypeId")]
         public virtual InformationType InformationType { get; set; }
+
+
+
+        public virtual ICollection<InformationTranslation> InformationTranslations { get; set; }
     }
 }

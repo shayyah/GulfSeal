@@ -16,7 +16,7 @@ namespace GulfSeal.Areas.Admin.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
          
-         
+        
 
         // GET: Admin/Products/Create
         public ActionResult Create()
@@ -42,12 +42,14 @@ namespace GulfSeal.Areas.Admin.Controllers
                         HttpPostedFileBase file = Request.Files[fileName];
                         fName = file.FileName;
                         if (file != null && file.ContentLength > 0)
-                        {
+                        {  
                             var originalDirectory = new DirectoryInfo($"{Server.MapPath(@"\")}Files");
                             string pathString = System.IO.Path.Combine(originalDirectory.ToString(), "Products");
 
                             string extension = Path.GetExtension(file.FileName);
                             var newFileName = imageName + extension;
+
+                             
 
                             bool isExists = System.IO.Directory.Exists(pathString);
 
