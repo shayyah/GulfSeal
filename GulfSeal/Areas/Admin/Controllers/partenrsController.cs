@@ -51,7 +51,6 @@ namespace GulfSeal.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-
                 try
                 {
                     var fName = "";
