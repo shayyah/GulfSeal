@@ -1,0 +1,97 @@
+.ng-scope {
+    padding: 1px;
+    background-color: #fff;
+}
+
+
+.st-sort-ascent:before {
+    content: '\25B2';
+}
+
+.st-sort-descent:before {
+    content: '\25BC';
+}
+
+.table-container {
+    height: 500px;
+    overflow-y: scroll;
+}
+
+.loading-indicator {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    text-align: center;
+    padding: 0.7em;
+}
+
+    .loading-indicator:before {
+        display: inline-block;
+        margin: 0 0.4em;
+        min-width: 1em;
+        min-height: 1em;
+        border-top: 4px solid #646464;
+        border-right: 4px solid #e6e6e6;
+        border-left: 4px solid #e6e6e6;
+        border-bottom: 4px solid #646464;
+        content: "";
+        -webkit-animation: halfspin 1s ease infinite;
+        -moz-animation: halfspin 1s ease infinite;
+        -o-animation: halfspin 1s ease infinite;
+        animation: halfspin 1s ease infinite;
+        border-radius: 100%;
+    }
+
+
+.pagination {
+    padding-top: 24px;
+    padding-bottom: 14px;
+    width: 10%;
+    margin: 0 auto;
+}
+
+.pagination .ng-scope a {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 7px;
+    padding-right: 7px;
+    background-color: #ffffff;
+    border: solid;
+    border-width: 1px;
+    border-color: #467fcf;
+    border-radius: 2px;
+}
+
+.pagination .ng-scope.active a {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 7px;
+    padding-right: 7px;
+    background-color: #467fcf;
+    color: #fff;
+    border-radius: 2px;
+}
+@-webkit-keyframes halfspin {
+    to {
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+}
+
+@-moz-keyframes halfspin {
+    to {
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+}
+
+@keyframes halfspin {
+    to {
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+}

@@ -1,0 +1,55 @@
+﻿@model IEnumerable<GulfSeal.Models.Project>
+
+@{
+    ViewBag.Title = "LastProjects";
+}
+
+<h2>LastProjects</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Rank)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageURL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedAt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastUpdatedAt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectType)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rank)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImageURL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedAt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastUpdatedAt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectType)
+        </td>
+    </tr>
+}
+
+</table>

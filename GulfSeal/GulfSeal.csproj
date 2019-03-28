@@ -209,6 +209,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -232,7 +233,6 @@
     <Compile Include="Migrations\201903242041052_staticContent2.Designer.cs">
       <DependentUpon>201903242041052_staticContent2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\ArticleContent.cs" />
@@ -259,9 +259,20 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Css\app.css" />
+    <Content Include="Content\Css\bootstrap.min.css" />
+    <Content Include="Content\Css\dashboard.css" />
+    <Content Include="Content\Css\hover-min.css" />
+    <Content Include="Content\Css\parsley.css" />
+    <Content Include="Content\Css\smart-table.min.css" />
     <Content Include="Content\dropzone\dropzone.css" />
     <Content Include="Content\dropzone\dropzone.js" />
     <Content Include="Content\dropzone\jquery-1.11.3.js" />
+    <Content Include="Content\fonts\feather\feather-webfont.svg" />
+    <Content Include="Content\fonts\GE SS Two Bold.svg" />
+    <Content Include="Content\fonts\GE SS Two Medium.svg" />
+    <Content Include="Content\fonts\Gotham-Black.svg" />
+    <Content Include="Content\fonts\Tahoma.svg" />
     <Content Include="Content\Img\loader.gif" />
     <Content Include="Content\Img\loader1.gif" />
     <Content Include="Content\Img\map\m1.png" />
@@ -273,6 +284,25 @@
     <Content Include="Content\Img\map\markerD.png" />
     <Content Include="Content\Img\map\markerS.png" />
     <Content Include="Content\Img\marker.png" />
+    <Content Include="Content\Js\core.js" />
+    <Content Include="Content\Js\dashboard.js" />
+    <Content Include="Content\Js\require.min.js" />
+    <Content Include="Content\Js\smart-table.min.js" />
+    <Content Include="Content\Js\vendors\bootstrap.bundle.min.js" />
+    <Content Include="Content\Js\vendors\chart.bundle.min.js" />
+    <Content Include="Content\Js\vendors\circle-progress.min.js" />
+    <Content Include="Content\Js\vendors\dataTables.bootstrap4.min.js" />
+    <Content Include="Content\Js\vendors\Datatables.js" />
+    <Content Include="Content\Js\vendors\jquery-3.2.1.min.js" />
+    <Content Include="Content\Js\vendors\jquery-3.2.1.slim.min.js" />
+    <Content Include="Content\Js\vendors\jquery-jvectormap-2.0.3.min.js" />
+    <Content Include="Content\Js\vendors\jquery-jvectormap-de-merc.js" />
+    <Content Include="Content\Js\vendors\jquery-jvectormap-world-mill.js" />
+    <Content Include="Content\Js\vendors\jquery.dataTables.min.js" />
+    <Content Include="Content\Js\vendors\jquery.sparkline.min.js" />
+    <Content Include="Content\Js\vendors\jquery.tablesorter.min.js" />
+    <Content Include="Content\Js\vendors\parsley.min.js" />
+    <Content Include="Content\Js\vendors\selectize.min.js" />
     <Content Include="Content\markerclusterer.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -330,12 +360,31 @@
     <Content Include="Areas\Admin\Views\Projects\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Projects\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Projects\EditProjectTranslation.cshtml" />
-    <Content Include="Areas\Admin\Views\StaticContents\Create.cshtml" />
     <Content Include="Areas\Admin\Views\StaticContents\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\StaticContents\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\StaticContents\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\StaticContents\Index.cshtml" />
     <Content Include="Areas\Admin\Views\StaticContents\EditStaticTranslation.cshtml" />
+    <Content Include="Content\fonts\feather\feather-webfont.eot" />
+    <Content Include="Content\fonts\feather\feather-webfont.ttf" />
+    <Content Include="Content\fonts\feather\feather-webfont.woff" />
+    <Content Include="Content\fonts\GE SS Two Bold.eot" />
+    <Content Include="Content\fonts\GE SS Two Bold.ttf" />
+    <Content Include="Content\fonts\GE SS Two Bold.woff" />
+    <Content Include="Content\fonts\GE SS Two Medium.eot" />
+    <Content Include="Content\fonts\GE SS Two Medium.ttf" />
+    <Content Include="Content\fonts\GE SS Two Medium.woff" />
+    <Content Include="Content\fonts\GEThameen-Book.woff" />
+    <Content Include="Content\fonts\GEThameen-Book.woff2" />
+    <Content Include="Content\fonts\GEThameen-DemiBold.woff" />
+    <Content Include="Content\fonts\GEThameen-DemiBold.woff2" />
+    <Content Include="Content\fonts\Gotham-Black.eot" />
+    <Content Include="Content\fonts\Gotham-Black.ttf" />
+    <Content Include="Content\fonts\Gotham-Black.woff" />
+    <Content Include="Content\fonts\Tahoma.eot" />
+    <Content Include="Content\fonts\Tahoma.otf" />
+    <Content Include="Content\fonts\Tahoma.ttf" />
+    <Content Include="Content\fonts\Tahoma.woff" />
+    <Content Include="Areas\Admin\Views\Information\Delete.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -384,6 +433,7 @@
     <Content Include="Areas\Admin\Views\Article\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Article\UploadFiles.cshtml" />
     <Content Include="Areas\Admin\Views\Article\Details.cshtml" />
+    <Content Include="Views\Projects\LastProjects.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

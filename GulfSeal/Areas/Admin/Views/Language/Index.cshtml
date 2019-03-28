@@ -4,62 +4,112 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
+<div class="my-3 my-md-5">
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">
+                Languages
+            </h1>
+        </div>
+        <div class="row row-cards row-deck">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
 
-        <th>
-            Flag
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Abbreviation)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RTL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastUpdatedAt)
-        </th>
-        <th></th>
-    </tr>
+                            <a href="@Url.Action("Create","Language")" class="btn btn-primary btn-sm"
+                               style="color:#ffffff">
+                                <span class="fa fa-plus"></span>
+                                Create New Language
+                            </a>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            <img src="@item.FlagImageUrl" style="width:60px;height:60px;" />
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Abbreviation)
-        </td>
-      
-        <td>
-            @Html.DisplayFor(modelItem => item.RTL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastUpdatedAt)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+                        </h3>
+
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table card-table table-vcenter text-nowrap" id="LanguagesTable">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Flag
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Name)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Abbreviation)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.RTL)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CreatedAt)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.LastUpdatedAt)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <img src="@item.FlagImageUrl" style="width:60px;height:60px;" />
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Abbreviation)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.RTL)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CreatedAt)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LastUpdatedAt)
+                                        </td>
+                                        <td class="text-right">
+                                            
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.Id, @class = "btn btn-secondary btn-sm" }) |
+                                            @Html.ActionLink("Details", "Details", new { id = item.Id, @class = "btn btn-secondary btn-sm" }) |
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.Id, @class = "btn btn-secondary btn-sm" })
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts {
+
+    <script>
+        require(['jquery', 'selectize'], function ($, selectize) {
+
+
+
+            $(document).ready(function () {
+                $('#LanguagesTable').DataTable({ fixedHeader: true, aaSorting: [] });
+            });
+
+
+        });
+    </script>
+
 }
-
-</table>

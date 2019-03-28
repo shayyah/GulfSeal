@@ -44,7 +44,7 @@ namespace GulfSeal.Areas.Admin.Controllers
             {
                 db.InformationTypes.Add(informationType);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "InformationTypes", new { area = "Admin" });
             }
 
             return View(informationType);

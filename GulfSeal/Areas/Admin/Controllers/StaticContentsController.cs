@@ -21,6 +21,25 @@ namespace GulfSeal.Areas.Admin.Controllers
             return View(db.StaticContents.ToList());
         }
 
+        public ActionResult Edit(int id)
+        {
+            return View(db.StaticContents.Find(id));
+        }
+
+        [HttpPost]
+        public ActionResult Edit(StaticContent model)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(model).State = EntityState.Modified;
+                db.SaveChanges();
+
+            }
+            return View(model);
+        }
+
+
+
         // GET: Admin/StaticContents/Details/5
         public ActionResult Details(int? id)
         {
@@ -36,82 +55,10 @@ namespace GulfSeal.Areas.Admin.Controllers
             return View(staticContent);
         }
          
-        public ActionResult Create()
-        {
-            return View();
-        } 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,About,Privacy")] StaticContent staticContent)
-        {
-            if (ModelState.IsValid)
-            {
-                db.StaticContents.Add(staticContent);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+        
 
-            return View(staticContent);
-        }
-
-        // GET: Admin/StaticContents/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            StaticContent staticContent = db.StaticContents.Find(id);
-            if (staticContent == null)
-            {
-                return HttpNotFound();
-            }
-            return View(staticContent);
-        }
-
-        // POST: Admin/StaticContents/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,About,Privacy")] StaticContent staticContent)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(staticContent).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(staticContent);
-        }
-
-        // GET: Admin/StaticContents/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            StaticContent staticContent = db.StaticContents.Find(id);
-            if (staticContent == null)
-            {
-                return HttpNotFound();
-            }
-            return View(staticContent);
-        }
-
-        // POST: Admin/StaticContents/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            StaticContent staticContent = db.StaticContents.Find(id);
-            db.StaticContents.Remove(staticContent);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-
+         
+        
         public ActionResult EditStaticTranslation(int staticId)
         {
             ViewBag.staticId = staticId;

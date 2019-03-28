@@ -17,40 +17,74 @@
     }
 </style>
 
- 
-<h2>Create</h2>
+
+<div class="page">
+    <div class="page-single">
+        <div class="container">
+            <div class="row">
+                <div class="col col-md-10 mx-auto">
+
+                    <div class="card">
+
+                        @Html.AntiForgeryToken()
+                        <div class="modal-body">
+
+                            <div class="text-center mb-6">
+                                <h2 style="color:#4A4A4A;padding-top:20px;font-size:22px;">Create New Inforamtion</h2>
+                            </div>
 
 
-<div class="form-group"> 
-    <label class = "control-label col-md-2">Title</label>
-    <div class="col-md-10"> 
-        <input type="text" name="TitleTemp" id="TitleTemp" class="form-control" />
-    </div>
-</div>
+                            <div class="form-horizontal">
 
 
-<div class="form-group">
-    <div style="margin-left:20px;margin-right:20px;">
-        <form action="../../Information/Create" enctype="multipart/form-data" method="post" id="my-awesome-dropzone" class="dropzone col-md-10">
-            <div class="dropzone-previews "></div> 
-            <input type="hidden" name="InformationTypeId" value="@ViewBag.InformationTypeId" />
-            <input type="hidden" name="Title" id="Title" />
+                                <div class="row" style="padding-left:30px;padding-right:30px;padding-top:16px;">
 
 
 
-        </form>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" id="ss" value="Edit" class="btn btn-default" />
+                                    <div class="form-group col-md-4">
+                                        <div style="margin-left:20px;margin-right:20px;">
+                                            <form action="../../Information/Create" enctype="multipart/form-data" method="post" id="my-awesome-dropzone" class="dropzone col-md-10">
+                                                <div class="dropzone-previews "></div>
+                                                <input type="hidden" name="InformationTypeId" value="@ViewBag.InformationTypeId" />
+                                                <input type="hidden" name="Title" id="Title" />
+
+                                            </form>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-md-4" style="display:inline-block">
+                                        <label class="form-label">Title</label>
+
+                                        <input type="text" name="TitleTemp" id="TitleTemp" class="form-control" />
+                                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+
+
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <input type="submit" id="ss" value="Create" class="btn btn-default" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                    <input type="hidden" name="Type" id="Type" value="@ViewBag.informationType" />
+
+
+
+                </div>
             </div>
         </div>
     </div>
 </div>
- 
-
-<input type="hidden" name="Type" id="Type" value="@ViewBag.informationType" />
-    
- 
 
 
 
@@ -68,11 +102,11 @@
         addRemoveLinks: true,
         autoProcessQueue: false,
         uploadMultiple: true,
-        parallelUploads: 100, 
+        parallelUploads: 100,
         acceptedFiles: GetType(),
-        init: function () { 
+        init: function () {
 
-            this.on("complete", function (data) { 
+            this.on("complete", function (data) {
                 //var res = JSON.parse(data.xhr.responseText);
 
                 var url ="../../Admin/Information/Index?InformationTypeId=@ViewBag.InformationTypeId";
@@ -88,7 +122,7 @@
                 deleted_img_name.push(file.name);
                 $("#deleted_img_name").val(deleted_img_name);
             });
-        } 
+        }
 
 
     });
@@ -115,6 +149,6 @@
         else
         {
             return 'application/pdf';
-        } 
+        }
     }
 </script>

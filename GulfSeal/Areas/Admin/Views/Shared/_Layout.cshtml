@@ -1,48 +1,267 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <meta charset="UTF-8">
+
+    <title>Gulf Seal - Dashboard</title>
+
+
+    <link href="~/Content/Css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <script src="~/Content/Js/require.min.js"></script>
+    <script src='@Url.Content("~/Content/Js/dashboard.js")'></script>
+    <link href="~/Content/Css/hover-min.css" rel="stylesheet" />
+    <link href="~/Content/Css/app.css" rel="stylesheet" />
+
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+
+    <script>
+        requirejs.config({
+            baseUrl: '@Url.Content("~/")'
+        });
+    </script>
+    <script src='@Url.Content("~/Content/Js/dashboard.js")'></script>
+    <script src="~/Content/Js/vendors/jquery.dataTables.min.js"></script>
+    <link href='@Url.Content("~/Content/Css/dashboard.css")' rel="stylesheet" />
+    <link href='@Url.Content("~/Content/Css/parsley.css")' rel="stylesheet" />
+
+
+
+
+
+    <style>
+        .container {
+            padding-left: 0px;
+            padding-right: 0px;
+        }
+
+        .mb-4 {
+            margin-bottom: 4px !important;
+            margin-top: 4px;
+        }
+
+        .selectgroup-input:checked + .selectgroup-button {
+            color: #000;
+        }
+
+        .dataTables_scrollBody {
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+
+        .dataTables_length, .dataTables_info, .dataTables_filter {
+            padding: 20px;
+            display: inline-block;
+        }
+
+            .dataTables_filter input {
+                width: 100%;
+                padding: 0.375rem 0.75rem;
+                font-size: 0.9375rem;
+                line-height: 1.6;
+                color: #495057;
+                background-color: #fff;
+                background-clip: padding-box;
+                border: 1px solid rgba(0, 40, 100, 0.12);
+                border-radius: 3px;
+                transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            }
+
+        .dataTables_paginate {
+            padding-right: 20px;
+        }
+
+        .table th {
+            color: #495057 !important;
+            font-weight: 300;
+        }
+    </style>
+
 </head>
+
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "Admin" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Language", "Index", "Language", new { area = "Admin" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Articles", "Index", "Article", new { area = "Admin" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Families", "Index", "Families", new { area = "Admin" }, new { @class = "navbar-brand" }) 
-                @Html.ActionLink("Information Types", "Index", "InformationTypes", new { area = "Admin" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Partenrs", "Index", "partenrs", new { area = "Admin" }, new { @class = "navbar-brand" }) 
-                @Html.ActionLink("Vendors", "Index", "Vendor", new { area = "Admin" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Projects", "Index", "Projects", new { area = "Admin" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Static Content", "Index", "StaticContents", new { area = "Admin" }, new { @class = "navbar-brand" })
+    <main>
+        <div class="page" style="min-height:650px;">
+            <div class="page-main">
+                <div class="header py-4">
+                    <div class="container">
+                        <div class="d-flex">
+                            <a class="header-brand" style="line-height:2.6rem" href="@Url.Action("index", "Home" )">
+                                <span style="color:#355F9C;text-transform: uppercase;">Gulf Seal mangment system</span>
+                            </a>
+                            <div class="d-flex order-lg-2 ml-auto">
+
+                            </div>
+                            <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse" data-target="#headerMenuCollapse">
+                                <span class="header-toggler-icon"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
+                    <div class="container">
+                        <div class="row align-items-center">
+
+                            <div class="col-lg order-lg-first">
+                                <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
+
+
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("Index", "Home", new { area = "Admin" })' class="nav-link" id="Home"><i class="fe fe-users"></i> Home</a>
+                                        @*@Html.ActionLink("Application name", "Index", "Home", new { area = "Admin" }, new { @class = "navbar-brand" })*@
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("Index", "Language", new { area = "Admin" })' class="nav-link" id="Language"><i class="fa fa-language"></i> Languages</a>
+                                        @*@Html.ActionLink("Language", "Index", "Language", new { area = "Admin" }, new { @class = "navbar-brand" })*@
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("Index", "Article", new { area = "Admin" })' class="nav-link" id="Article"><i class="fa fa-file-text"></i>Articles</a>
+                                        @*@Html.ActionLink("Articles", "Index", "Article", new { area = "Admin" }, new { @class = "navbar-brand" })*@
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("Index", "Families", new { area = "Admin" })' class="nav-link" id="Families"><i class="fa fa-object-group"></i>Families</a>
+                                        @*@Html.ActionLink("Families", "Index", "Families", new { area = "Admin" }, new { @class = "navbar-brand" })*@
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("Index", "InformationTypes", new { area = "Admin" })' class="nav-link" id="InformationTypes"><i class="fa fa-info"></i> Information Types</a>
+                                        @*@Html.ActionLink("Information Types", "Index", "InformationTypes", new { area = "Admin" }, new { @class = "navbar-brand" })*@
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("Index", "partenrs", new { area = "Admin" })' class="nav-link" id="partenrs"><i class="fe fe-users"></i> Partners</a>
+                                        @*@Html.ActionLink("Partenrs", "Index", "partenrs", new { area = "Admin" }, new { @class = "navbar-brand" })*@
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("Index", "Vendor", new { area = "Admin" })' class="nav-link" id="Vendor"><i class="fe fe-users"></i> Vendor</a>
+                                        @*@Html.ActionLink("Vendors", "Index", "Vendor", new { area = "Admin" }, new { @class = "navbar-brand" })*@
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("Index", "Projects", new { area = "Admin" })' class="nav-link" id="Projects"><i class="fa fa-product-hunt"></i>Projects</a>
+                                        @*@Html.ActionLink("Projects", "Index", "Projects", new { area = "Admin" }, new { @class = "navbar-brand" })*@
+                                    </li>
+                                    
+                                    <li class="nav-item">
+                                        <a href='@Url.Action("Index", "StaticContents", new { area = "Admin" })' class="nav-link" id="StaticContents"><i class="fa fa-text-height"></i> Static Contents</a>
+                                        @*@Html.ActionLink("Static Content", "Index", "StaticContents", new { area = "Admin" }, new { @class = "navbar-brand" })*@
+                                    </li>
+
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="my-3 my-md-5">
+                    <div class="container">
+
+
+                        @RenderBody()
+                        
+                    </div>
+                </div>
+
+
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
-            </div>
+
+            <footer class="footer">
+                <div class="container">
+                    <div class="row align-items-center flex-row-reverse">
+
+                        <div class="col-12 col-lg-auto mt-3 mt-lg-0 text-center">
+                            Copyright © 2018 <a href=".">Tabler</a>. Theme by <a href="https://codecalm.net" target="_blank">codecalm.net</a> All rights reserved.
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
-    </div>
+    </main>
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
 </body>
 </html>
+
+
+<script>
+
+    require(['jquery', 'selectize'], function ($, selectize) {
+
+        ////////
+        // Activate the current menue item
+
+        var menueTitle = "";
+        if (location.pathname == "/" || location.pathname == "" || location.pathname == "/Admin") {
+            menueTitle = "User";
+        }
+        else {
+            
+            menueTitle = location.pathname.split('/')[2];
+            if (menueTitle.startsWith("/")) {
+                menueTitle = menueTitle.substring(2);
+            }
+        }
+        //menueTitle = menueTitle.toLowerCase();
+        $("#" + menueTitle).addClass("active");
+    });
+</script>
+
+
+
+
+
+
+@*<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>@ViewBag.Title - My ASP.NET Application</title>
+            @Styles.Render("~/Content/css")
+            @Scripts.Render("~/bundles/modernizr")
+        </head>
+        <body>
+            <div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        @Html.ActionLink("Application name", "Index", "Home", new { area = "Admin" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Language", "Index", "Language", new { area = "Admin" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Articles", "Index", "Article", new { area = "Admin" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Families", "Index", "Families", new { area = "Admin" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Information Types", "Index", "InformationTypes", new { area = "Admin" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Partenrs", "Index", "partenrs", new { area = "Admin" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Vendors", "Index", "Vendor", new { area = "Admin" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Projects", "Index", "Projects", new { area = "Admin" }, new { @class = "navbar-brand" })
+                        @Html.ActionLink("Static Content", "Index", "StaticContents", new { area = "Admin" }, new { @class = "navbar-brand" })
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav"></ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container body-content">
+                @RenderBody()
+                <hr />
+                <footer>
+                    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                </footer>
+            </div>
+
+            @Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/bundles/bootstrap")
+            @RenderSection("scripts", required: false)
+        </body>
+    </html>*@

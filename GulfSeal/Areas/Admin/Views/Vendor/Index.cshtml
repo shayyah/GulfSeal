@@ -1,71 +1,105 @@
 ﻿@model IEnumerable<GulfSeal.Models.Vendor>
 
 @{
-    ViewBag.Title = "koki";
+    ViewBag.Title = "Vendors";
 }
 
-<h2>khakha</h2>
-<h2>nono</h2>
-<h2>toto</h2>
 
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<div class="my-3 my-md-5">
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">
+                Vendors
+            </h1>
+        </div>
+        <div class="row row-cards row-deck">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
 
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Phone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Longitude)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Latitude)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.InsideKSA)
-        </th>
-        <th></th>
-    </tr>
+                            <a href="@Url.Action("Create","Vendor")" class="btn btn-primary btn-sm"
+                               style="color:#ffffff">
+                                <span class="fa fa-plus"></span>
+                                Create New Vendor
+                            </a>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Longitude)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Latitude)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.InsideKSA)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+                        </h3>
 
-</table>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table card-table table-vcenter text-nowrap" id="VendorsTable">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Name)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Phone)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Longitude)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Latitude)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.InsideKSA)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
 
-<div id="map1" style="height:400px;width:100%;"></div>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Phone)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Longitude)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Latitude)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.InsideKSA)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+
+
+
+
+                        <div id="map1" style="height:400px;width:100%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
 
 @section scripts {
 
-<script>
+    <script>
 
     function initMap() {
         var markers = [];
@@ -104,18 +138,18 @@
 
                     <text>
                         var markerlatLng = new google.maps.LatLng(@(provider.Latitude), @(provider.Longitude));
-                         
+
                         var name = '@(provider.Name)';
                         var To = '@(provider.Phone)' + ' : ' + '@(provider.Name)';
                         var content = '<b>Vendor: </b>' + '@(provider.Name)' +
                             ' <br/><br/><b>@(Html.ActionLink("Details", "Details", "Vendor", new { Area = "Admin",Id = provider.Id},null)) </b>';
-         
 
-         
+
+
                         var marker = new google.maps.Marker({
                             position: markerlatLng,
                             title: name,
-                            map: map 
+                            map: map
                         });
 
                         markers.push(marker);
@@ -147,13 +181,31 @@
             }
 
 
-</script>
+    </script>
+
+
+    <script>
+        require(['jquery', 'selectize'], function ($, selectize) {
 
 
 
-     
-<script src="~/Content/markerclusterer.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBl4Pzqz_A5zt10KpJI4urZPothek-Y2a8&callback=initMap"
-        async defer></script>
+            $(document).ready(function () {
+                $('#VendorsTable').DataTable({ fixedHeader: true, aaSorting: [] });
+            });
+
+
+        });
+    </script>
+
+
+
+
+
+    <script src="~/Content/markerclusterer.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBl4Pzqz_A5zt10KpJI4urZPothek-Y2a8&callback=initMap"
+            async defer></script>
 
 }
+
+
+
