@@ -1,0 +1,92 @@
+﻿@model IEnumerable<GulfSeal.Models.Language>
+
+@{
+    ViewBag.Title = "Create";
+}
+<link href="~/Content/dropzone/dropzone.css" rel="stylesheet" />
+<script src="~/Content/dropzone/dropzone.js"></script>
+<script src="~/Content/dropzone/jquery-1.11.3.js"></script>
+
+
+<style>
+    .dropzone {
+        background-color:gray ;
+        width: 100% ;
+        align-content: center;
+        text-align: center;
+        color: black;
+    }
+</style>
+
+
+
+<h2>Create</h2>
+
+    <form id="dropzoneForm" class="dropzone" enctype="multipart/form-data" action="~/Slider/Create" style="height:100%;background-color:rgba(0, 0, 0, 0);padding-top: 30px;margin:20px 0 20px 0">
+        @Html.AntiForgeryToken()
+        <div class="dropzone-previews"></div> <!-- this is were the previews should be shown. -->
+        <!-- Now setup your input fields -->
+        <input type="hidden" id="slider_data" name="slider_data" />
+    </form>
+    @foreach (var item in Model)
+    {
+        <div class="input-group">
+            <span class="input-group-addon" id="basic-addon3">@item.Name slider</span>
+            <input type="text" class="form-control slider" id="@item.Id" aria-describedby="basic-addon3">
+        </div>
+        <div class="input-group" style="margin-top:20px">
+            <span class="input-group-addon" id="basic-addon3">@item.Name Sub slider</span>
+            <input type="text" class="form-control subslider" id="Subslider_@item.Id" aria-describedby="basic-addon3">
+        </div>
+        <hr />
+    }
+    <button type="button" class="btn btn-success" id="upload" style="width:100%;margin-bottom:20px;">Upload !</button>
+
+
+
+
+<script>
+    var addedFile = false;
+    Dropzone.options.dropzoneForm = {
+        clickable: true,
+        autoProcessQueue: false,
+        dictDefaultMessage: "Add Slider image best size 1000*1000",
+        maxFiles: 1,
+        addRemoveLinks: true,
+        init: function () {
+            myDropzone = this;
+            this.on("addedfile", function (file) {
+                addedFile = true;
+            }),
+                this.on("removedfile", function (file) {
+                    addedFile = false;
+                }),
+
+                this.on("complete", function (data) {
+                   var url = '@Url.Action("Index", "Slider" )'
+                   location.href = url;
+                });
+        }
+    };
+
+
+</script>
+<script>
+
+    $('#upload').click(function () {
+        var slider_string = "";
+        $('.slider').each(function () {
+            var slider_id = $(this).attr("id");
+            var slider_val = $(this).val();
+            var subslider = $('#Subslider_' + slider_id).val();
+            var slider_sub_string = slider_val + "***" + subslider + "***" + slider_id + "###";
+            slider_string = slider_string + slider_sub_string
+            //alert(subslider);
+
+        });
+        $('#slider_data').val(slider_string);
+        myDropzone.processQueue();
+
+    })
+
+</script>

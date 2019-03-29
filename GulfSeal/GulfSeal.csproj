@@ -49,6 +49,9 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MoreLinq.Portable, Version=1.4.18916.0, Culture=neutral, PublicKeyToken=384d532d7e88985d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MoreLinq.Portable.1.4.0\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\MoreLinq.Portable.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -197,6 +200,8 @@
     <Compile Include="Areas\Admin\Controllers\LanguageController.cs" />
     <Compile Include="Areas\Admin\Controllers\partenrsController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\sec_langController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SliderController.cs" />
     <Compile Include="Areas\Admin\Controllers\VendorController.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\ArticleContentsViewModels.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\InformationViewModels.cs" />
@@ -207,17 +212,37 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903162122192_v1.cs" />
-    <Compile Include="Migrations\201903162122192_v1.Designer.cs">
-      <DependentUpon>201903162122192_v1.cs</DependentUpon>
+    <Compile Include="Migrations\201903202207576_v1.cs" />
+    <Compile Include="Migrations\201903202207576_v1.Designer.cs">
+      <DependentUpon>201903202207576_v1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903182005172_edit-5.cs" />
-    <Compile Include="Migrations\201903182005172_edit-5.Designer.cs">
-      <DependentUpon>201903182005172_edit-5.cs</DependentUpon>
+    <Compile Include="Migrations\201903241918560_v11.cs" />
+    <Compile Include="Migrations\201903241918560_v11.Designer.cs">
+      <DependentUpon>201903241918560_v11.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903202103552_edit-9.cs" />
-    <Compile Include="Migrations\201903202103552_edit-9.Designer.cs">
-      <DependentUpon>201903202103552_edit-9.cs</DependentUpon>
+    <Compile Include="Migrations\201903242039327_v2.cs" />
+    <Compile Include="Migrations\201903242039327_v2.Designer.cs">
+      <DependentUpon>201903242039327_v2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903242041470_v3.cs" />
+    <Compile Include="Migrations\201903242041470_v3.Designer.cs">
+      <DependentUpon>201903242041470_v3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903251700379_v4.cs" />
+    <Compile Include="Migrations\201903251700379_v4.Designer.cs">
+      <DependentUpon>201903251700379_v4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903252206017_v5.cs" />
+    <Compile Include="Migrations\201903252206017_v5.Designer.cs">
+      <DependentUpon>201903252206017_v5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903252207086_v6.cs" />
+    <Compile Include="Migrations\201903252207086_v6.Designer.cs">
+      <DependentUpon>201903252207086_v6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903252236498_v7.cs" />
+    <Compile Include="Migrations\201903252236498_v7.Designer.cs">
+      <DependentUpon>201903252236498_v7.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -235,6 +260,8 @@
     <Compile Include="Models\partenrs.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductTranslation.cs" />
+    <Compile Include="Models\sec_lang.cs" />
+    <Compile Include="Models\slider_packeg.cs" />
     <Compile Include="Models\Vendor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -257,6 +284,267 @@
     <Content Include="Content\Img\map\markerS.png" />
     <Content Include="Content\Img\marker.png" />
     <Content Include="Content\markerclusterer.js" />
+    <Content Include="Content\them\css\animate.css" />
+    <Content Include="Content\them\css\bg-image.css" />
+    <Content Include="Content\them\css\bootstrap.css" />
+    <Content Include="Content\them\css\colors\aqua.css" />
+    <Content Include="Content\them\css\colors\blue.css" />
+    <Content Include="Content\them\css\colors\green.css" />
+    <Content Include="Content\them\css\colors\grey.css" />
+    <Content Include="Content\them\css\colors\lime.css" />
+    <Content Include="Content\them\css\colors\orange.css" />
+    <Content Include="Content\them\css\colors\pink.css" />
+    <Content Include="Content\them\css\colors\purple.css" />
+    <Content Include="Content\them\css\colors\red.css" />
+    <Content Include="Content\them\css\colors\yellow.css" />
+    <Content Include="Content\them\css\footer.css" />
+    <Content Include="Content\them\css\header.css" />
+    <Content Include="Content\them\css\import-font.css" />
+    <Content Include="Content\them\css\jquery.countdown.css" />
+    <Content Include="Content\them\css\layout.css" />
+    <Content Include="Content\them\css\magnific-popup.css" />
+    <Content Include="Content\them\css\main.css" />
+    <Content Include="Content\them\css\owl.carousel.css" />
+    <Content Include="Content\them\css\owl.theme.css" />
+    <Content Include="Content\them\css\responsive.css" />
+    <Content Include="Content\them\css\responsiveslides.css" />
+    <Content Include="Content\them\css\rev-settings.css" />
+    <Content Include="Content\them\css\style.css" />
+    <Content Include="Content\them\css\variables.css" />
+    <Content Include="Content\them\css\woocommerce.css" />
+    <Content Include="Content\them\fonts\font-awesome\css\font-awesome.css" />
+    <Content Include="Content\them\fonts\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Content\them\fonts\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\them\images\404.png" />
+    <Content Include="Content\them\images\about\intro-video.jpg" />
+    <Content Include="Content\them\images\about\we-are-thumb-1.jpg" />
+    <Content Include="Content\them\images\about\we-are-thumb-2.jpg" />
+    <Content Include="Content\them\images\about\we-are-thumb.jpg" />
+    <Content Include="Content\them\images\avatar.jpg" />
+    <Content Include="Content\them\images\bg\bg-1.jpg" />
+    <Content Include="Content\them\images\bg\bg-about.jpg" />
+    <Content Include="Content\them\images\bg\bg-service.jpg" />
+    <Content Include="Content\them\images\bg\bg-team.jpg" />
+    <Content Include="Content\them\images\bg\commingsoon.jpg" />
+    <Content Include="Content\them\images\bg\sub-header-bg.jpg" />
+    <Content Include="Content\them\images\cd-icon-location.png" />
+    <Content Include="Content\them\images\client\dribbble.png" />
+    <Content Include="Content\them\images\client\envato.png" />
+    <Content Include="Content\them\images\client\pinterest.png" />
+    <Content Include="Content\them\images\client\wordpress.png" />
+    <Content Include="Content\them\images\computer.png" />
+    <Content Include="Content\them\images\favicon.png" />
+    <Content Include="Content\them\images\home\we-are-thumb-1.jpg" />
+    <Content Include="Content\them\images\home\we-are-thumb-2.jpg" />
+    <Content Include="Content\them\images\icons\pricing-1.png" />
+    <Content Include="Content\them\images\icons\pricing-2.png" />
+    <Content Include="Content\them\images\icons\pricing-3.png" />
+    <Content Include="Content\them\images\loader.gif" />
+    <Content Include="Content\them\images\logo-2.png" />
+    <Content Include="Content\them\images\logo-footer.png" />
+    <Content Include="Content\them\images\logo-footer2.png" />
+    <Content Include="Content\them\images\logo.png" />
+    <Content Include="Content\them\images\news\1.jpg" />
+    <Content Include="Content\them\images\news\2.jpg" />
+    <Content Include="Content\them\images\news\3.jpg" />
+    <Content Include="Content\them\images\news\4.jpg" />
+    <Content Include="Content\them\images\news\5.jpg" />
+    <Content Include="Content\them\images\news\6.jpg" />
+    <Content Include="Content\them\images\news\7.jpg" />
+    <Content Include="Content\them\images\news\8.jpg" />
+    <Content Include="Content\them\images\news\9.jpg" />
+    <Content Include="Content\them\images\news\ads.jpg" />
+    <Content Include="Content\them\images\news\avatar\1.png" />
+    <Content Include="Content\them\images\news\avatar\2.png" />
+    <Content Include="Content\them\images\news\avatar\3.png" />
+    <Content Include="Content\them\images\news\blog-details.jpg" />
+    <Content Include="Content\them\images\news\thumb\thumb-1.jpg" />
+    <Content Include="Content\them\images\news\thumb\thumb-2.jpg" />
+    <Content Include="Content\them\images\news\thumb\thumb-3.jpg" />
+    <Content Include="Content\them\images\news\thumb\thumb-4.jpg" />
+    <Content Include="Content\them\images\news\thumb\thumb-5.jpg" />
+    <Content Include="Content\them\images\news\thumb\thumb-6.jpg" />
+    <Content Include="Content\them\images\projects\medium-1.jpg" />
+    <Content Include="Content\them\images\projects\medium-10.jpg" />
+    <Content Include="Content\them\images\projects\medium-2.jpg" />
+    <Content Include="Content\them\images\projects\medium-3.jpg" />
+    <Content Include="Content\them\images\projects\medium-4.jpg" />
+    <Content Include="Content\them\images\projects\medium-5.jpg" />
+    <Content Include="Content\them\images\projects\medium-6.jpg" />
+    <Content Include="Content\them\images\projects\medium-7.jpg" />
+    <Content Include="Content\them\images\projects\medium-8.jpg" />
+    <Content Include="Content\them\images\projects\medium-9.jpg" />
+    <Content Include="Content\them\images\projects\slides\project-slider-1.jpg" />
+    <Content Include="Content\them\images\projects\slides\project-slider-2.jpg" />
+    <Content Include="Content\them\images\projects\small-1.jpg" />
+    <Content Include="Content\them\images\projects\small-10.jpg" />
+    <Content Include="Content\them\images\projects\small-2.jpg" />
+    <Content Include="Content\them\images\projects\small-3.jpg" />
+    <Content Include="Content\them\images\projects\small-4.jpg" />
+    <Content Include="Content\them\images\projects\small-5.jpg" />
+    <Content Include="Content\them\images\projects\small-6.jpg" />
+    <Content Include="Content\them\images\projects\small-7.jpg" />
+    <Content Include="Content\them\images\projects\small-8.jpg" />
+    <Content Include="Content\them\images\projects\small-9.jpg" />
+    <Content Include="Content\them\images\services\thumb-1.png" />
+    <Content Include="Content\them\images\services\thumb-2.png" />
+    <Content Include="Content\them\images\services\thumb-3.png" />
+    <Content Include="Content\them\images\services\thumbs-1.png" />
+    <Content Include="Content\them\images\services\thumbs-2.png" />
+    <Content Include="Content\them\images\services\thumbs-3.png" />
+    <Content Include="Content\them\images\shop\shop-banner.jpg" />
+    <Content Include="Content\them\images\shop\single-product.jpg" />
+    <Content Include="Content\them\images\shop\thumb-single-0.jpg" />
+    <Content Include="Content\them\images\shop\thumb-single-1.jpg" />
+    <Content Include="Content\them\images\shop\thumb-single-2.jpg" />
+    <Content Include="Content\them\images\shop\thumb-single-3.jpg" />
+    <Content Include="Content\them\images\shop\thumb\product-thumb-1.jpg" />
+    <Content Include="Content\them\images\shop\thumb\product-thumb-2.jpg" />
+    <Content Include="Content\them\images\shop\thumb\product-thumb-3.jpg" />
+    <Content Include="Content\them\images\shop\thumb\shop-thumb-1.jpg" />
+    <Content Include="Content\them\images\shop\thumb\shop-thumb-2.jpg" />
+    <Content Include="Content\them\images\shop\thumb\shop-thumb-3.jpg" />
+    <Content Include="Content\them\images\shop\thumb\shop-thumb-4.jpg" />
+    <Content Include="Content\them\images\shop\thumb\shop-thumb-5.jpg" />
+    <Content Include="Content\them\images\shop\thumb\shop-thumb-6.jpg" />
+    <Content Include="Content\them\images\shop\thumb\shop-thumb-7.jpg" />
+    <Content Include="Content\them\images\shop\thumb\shop-thumb-8.jpg" />
+    <Content Include="Content\them\images\shop\thumb\shop-thumb-9.jpg" />
+    <Content Include="Content\them\images\support.jpg" />
+    <Content Include="Content\them\images\team\thumb-1.png" />
+    <Content Include="Content\them\images\team\thumb-2.png" />
+    <Content Include="Content\them\images\team\thumb-3.png" />
+    <Content Include="Content\them\images\team\thumb-4.png" />
+    <Content Include="Content\them\images\testimonial\thumb-1.png" />
+    <Content Include="Content\them\images\testimonial\thumb-2.png" />
+    <Content Include="Content\them\images\testimonial\thumb-3.png" />
+    <Content Include="Content\them\images\testimonial\thumb-4.png" />
+    <Content Include="Content\them\images\tipper-icon.png" />
+    <Content Include="Content\them\img-rev-slider\bg-1.jpg" />
+    <Content Include="Content\them\img-rev-slider\bg-2.jpg" />
+    <Content Include="Content\them\img-rev-slider\bg-3.jpg" />
+    <Content Include="Content\them\img-rev-slider\bg-4.jpg" />
+    <Content Include="Content\them\img-rev-slider\bg-5.jpg" />
+    <Content Include="Content\them\img-rev-slider\bg-6.jpg" />
+    <Content Include="Content\them\img-rev-slider\thumb\thumb-1.png" />
+    <Content Include="Content\them\img-rev-slider\thumb\thumb-2.png" />
+    <Content Include="Content\them\img-rev-slider\thumb\thumb-3.png" />
+    <Content Include="Content\them\js\about.js" />
+    <Content Include="Content\them\js\bootstrap.min.js" />
+    <Content Include="Content\them\js\compact.js" />
+    <Content Include="Content\them\js\contact.js" />
+    <Content Include="Content\them\js\countdown-custom.js" />
+    <Content Include="Content\them\js\custom-element.js" />
+    <Content Include="Content\them\js\custom-index1.js" />
+    <Content Include="Content\them\js\custom-index2.js" />
+    <Content Include="Content\them\js\custom-index3.js" />
+    <Content Include="Content\them\js\custom-product-single.js" />
+    <Content Include="Content\them\js\easing.js" />
+    <Content Include="Content\them\js\imagesloaded.pkgd.min.js" />
+    <Content Include="Content\them\js\jquery.countdown.js" />
+    <Content Include="Content\them\js\jquery.counterup.min.js" />
+    <Content Include="Content\them\js\jquery.fitvids.js" />
+    <Content Include="Content\them\js\jquery.isotope.min.js" />
+    <Content Include="Content\them\js\jquery.magnific-popup.min.js" />
+    <Content Include="Content\them\js\jquery.min.js" />
+    <Content Include="Content\them\js\jquery.plugin.js" />
+    <Content Include="Content\them\js\jquery.waypoints.min.js" />
+    <Content Include="Content\them\js\masonry.js" />
+    <Content Include="Content\them\js\owl.carousel.js" />
+    <Content Include="Content\them\js\plugins.js" />
+    <Content Include="Content\them\js\pro-bars.js" />
+    <Content Include="Content\them\js\revslider-custom.js" />
+    <Content Include="Content\them\js\smk-accordion.js" />
+    <Content Include="Content\them\js\sticky.min.js" />
+    <Content Include="Content\them\js\tabs.js" />
+    <Content Include="Content\them\js\tipper.js" />
+    <Content Include="Content\them\js\visible.min.js" />
+    <Content Include="Content\them\js\wow.min.js" />
+    <Content Include="Content\them\rs-plugin\assets\arrowleft.png" />
+    <Content Include="Content\them\rs-plugin\assets\arrowright.png" />
+    <Content Include="Content\them\rs-plugin\assets\arrow_large_left.png" />
+    <Content Include="Content\them\rs-plugin\assets\arrow_large_right.png" />
+    <Content Include="Content\them\rs-plugin\assets\arrow_left.png" />
+    <Content Include="Content\them\rs-plugin\assets\arrow_left2.png" />
+    <Content Include="Content\them\rs-plugin\assets\arrow_right.png" />
+    <Content Include="Content\them\rs-plugin\assets\arrow_right2.png" />
+    <Content Include="Content\them\rs-plugin\assets\black50.png" />
+    <Content Include="Content\them\rs-plugin\assets\boxed_bgtile.png" />
+    <Content Include="Content\them\rs-plugin\assets\bullet.png" />
+    <Content Include="Content\them\rs-plugin\assets\bullets.png" />
+    <Content Include="Content\them\rs-plugin\assets\bullets2.png" />
+    <Content Include="Content\them\rs-plugin\assets\bullet_boxed.png" />
+    <Content Include="Content\them\rs-plugin\assets\coloredbg.png" />
+    <Content Include="Content\them\rs-plugin\assets\grain.png" />
+    <Content Include="Content\them\rs-plugin\assets\gridtile.png" />
+    <Content Include="Content\them\rs-plugin\assets\gridtile_3x3.png" />
+    <Content Include="Content\them\rs-plugin\assets\gridtile_3x3_white.png" />
+    <Content Include="Content\them\rs-plugin\assets\gridtile_white.png" />
+    <Content Include="Content\them\rs-plugin\assets\large_left.png" />
+    <Content Include="Content\them\rs-plugin\assets\large_left_dark.png" />
+    <Content Include="Content\them\rs-plugin\assets\large_right.png" />
+    <Content Include="Content\them\rs-plugin\assets\large_right_dark.png" />
+    <Content Include="Content\them\rs-plugin\assets\loader.gif" />
+    <Content Include="Content\them\rs-plugin\assets\loader2.gif" />
+    <Content Include="Content\them\rs-plugin\assets\navigdots.png" />
+    <Content Include="Content\them\rs-plugin\assets\navigdots_bgtile.png" />
+    <Content Include="Content\them\rs-plugin\assets\shadow1.png" />
+    <Content Include="Content\them\rs-plugin\assets\shadow2.png" />
+    <Content Include="Content\them\rs-plugin\assets\shadow3.png" />
+    <Content Include="Content\them\rs-plugin\assets\small_left.png" />
+    <Content Include="Content\them\rs-plugin\assets\small_left_boxed.png" />
+    <Content Include="Content\them\rs-plugin\assets\small_right.png" />
+    <Content Include="Content\them\rs-plugin\assets\small_right_boxed.png" />
+    <Content Include="Content\them\rs-plugin\assets\timer.png" />
+    <Content Include="Content\them\rs-plugin\assets\timerdot.png" />
+    <Content Include="Content\them\rs-plugin\assets\transparent.jpg" />
+    <Content Include="Content\them\rs-plugin\assets\white50.png" />
+    <Content Include="Content\them\rs-plugin\css\settings-ie8.css" />
+    <Content Include="Content\them\rs-plugin\css\settings.css" />
+    <Content Include="Content\them\rs-plugin\font\revicons.svg" />
+    <Content Include="Content\them\rs-plugin\images\decor_inside.png" />
+    <Content Include="Content\them\rs-plugin\images\decor_inside_white.png" />
+    <Content Include="Content\them\rs-plugin\images\decor_testimonial.png" />
+    <Content Include="Content\them\rs-plugin\images\gradient\g30.png" />
+    <Content Include="Content\them\rs-plugin\images\gradient\g40.png" />
+    <Content Include="Content\them\rs-plugin\js\jquery.themepunch.plugins.min.js" />
+    <Content Include="Content\them\rs-plugin\js\jquery.themepunch.revolution.js" />
+    <Content Include="Content\them\rs-plugin\js\jquery.themepunch.revolution.min.js" />
+    <Content Include="Content\them\rs-plugin\videojs\demo.html" />
+    <Content Include="Content\them\rs-plugin\videojs\font\vjs.svg" />
+    <Content Include="Content\them\rs-plugin\videojs\video-js.css" />
+    <Content Include="Content\them\rs-plugin\videojs\video-js.min.css" />
+    <Content Include="Content\them\rs-plugin\videojs\video-js.png" />
+    <Content Include="Content\them\rs-plugin\videojs\video-js.swf" />
+    <Content Include="Content\them\rs-plugin\videojs\video.dev.js" />
+    <Content Include="Content\them\rs-plugin\videojs\video.js" />
+    <Content Include="Content\them\switcher\code.html" />
+    <Content Include="Content\them\switcher\colors\aqua.css" />
+    <Content Include="Content\them\switcher\colors\blue.css" />
+    <Content Include="Content\them\switcher\colors\green.css" />
+    <Content Include="Content\them\switcher\colors\grey.css" />
+    <Content Include="Content\them\switcher\colors\lime.css" />
+    <Content Include="Content\them\switcher\colors\orange.css" />
+    <Content Include="Content\them\switcher\colors\pink.css" />
+    <Content Include="Content\them\switcher\colors\purple.css" />
+    <Content Include="Content\them\switcher\colors\red.css" />
+    <Content Include="Content\them\switcher\colors\yellow.css" />
+    <Content Include="Content\them\switcher\demo.css" />
+    <Content Include="Content\them\switcher\demo.js" />
+    <Content Include="Content\them\switcher\images\patern01.png" />
+    <Content Include="Content\them\switcher\images\patern02.png" />
+    <Content Include="Content\them\switcher\images\patern03.png" />
+    <Content Include="Content\them\switcher\images\patern04.png" />
+    <Content Include="Content\them\switcher\images\patern05.png" />
+    <Content Include="Content\them\switcher\images\patern06.png" />
+    <Content Include="Content\them\switcher\images\patern07.png" />
+    <Content Include="Content\them\switcher\images\patern08.png" />
+    <Content Include="Content\them\switcher\images\patern09.jpg" />
+    <Content Include="Content\them\switcher\images\patern10.jpg" />
+    <Content Include="Content\them\switcher\images\patern11.jpg" />
+    <Content Include="Content\them\switcher\images\patern12.jpg" />
+    <Content Include="Content\them\switcher\images\patern13.jpg" />
+    <Content Include="Content\them\switcher\images\patern14.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -308,6 +596,54 @@
     <Content Include="Areas\Admin\Views\Language\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Language\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\Article\Delete.cshtml" />
+    <Content Include="Content\them\fonts\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\them\fonts\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\them\fonts\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\them\fonts\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\them\fonts\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Content\them\fonts\font-awesome\less\animated.less" />
+    <Content Include="Content\them\fonts\font-awesome\less\bordered-pulled.less" />
+    <Content Include="Content\them\fonts\font-awesome\less\core.less" />
+    <Content Include="Content\them\fonts\font-awesome\less\fixed-width.less" />
+    <Content Include="Content\them\fonts\font-awesome\less\font-awesome.less" />
+    <Content Include="Content\them\fonts\font-awesome\less\icons.less" />
+    <Content Include="Content\them\fonts\font-awesome\less\larger.less" />
+    <Content Include="Content\them\fonts\font-awesome\less\list.less" />
+    <Content Include="Content\them\fonts\font-awesome\less\mixins.less" />
+    <Content Include="Content\them\fonts\font-awesome\less\path.less" />
+    <Content Include="Content\them\fonts\font-awesome\less\rotated-flipped.less" />
+    <Content Include="Content\them\fonts\font-awesome\less\stacked.less" />
+    <Content Include="Content\them\fonts\font-awesome\less\variables.less" />
+    <Content Include="Content\them\fonts\font-awesome\scss\font-awesome.scss" />
+    <Content Include="Content\them\fonts\font-awesome\scss\_animated.scss" />
+    <Content Include="Content\them\fonts\font-awesome\scss\_bordered-pulled.scss" />
+    <Content Include="Content\them\fonts\font-awesome\scss\_core.scss" />
+    <Content Include="Content\them\fonts\font-awesome\scss\_fixed-width.scss" />
+    <Content Include="Content\them\fonts\font-awesome\scss\_icons.scss" />
+    <Content Include="Content\them\fonts\font-awesome\scss\_larger.scss" />
+    <Content Include="Content\them\fonts\font-awesome\scss\_list.scss" />
+    <Content Include="Content\them\fonts\font-awesome\scss\_mixins.scss" />
+    <Content Include="Content\them\fonts\font-awesome\scss\_path.scss" />
+    <Content Include="Content\them\fonts\font-awesome\scss\_rotated-flipped.scss" />
+    <Content Include="Content\them\fonts\font-awesome\scss\_stacked.scss" />
+    <Content Include="Content\them\fonts\font-awesome\scss\_variables.scss" />
+    <Content Include="Content\them\rs-plugin\font\revicons.eot" />
+    <Content Include="Content\them\rs-plugin\font\revicons.ttf" />
+    <Content Include="Content\them\rs-plugin\font\revicons.woff" />
+    <Content Include="Content\them\rs-plugin\videojs\demo.captions.vtt" />
+    <Content Include="Content\them\rs-plugin\videojs\font\vjs.eot" />
+    <Content Include="Content\them\rs-plugin\videojs\font\vjs.ttf" />
+    <Content Include="Content\them\rs-plugin\videojs\font\vjs.woff" />
+    <Content Include="Areas\Admin\Views\Slider\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Slider\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Slider\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Slider\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Slider\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\sec_lang\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\sec_lang\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\sec_lang\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\sec_lang\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\sec_lang\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -376,14 +712,29 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903162122192_v1.resx">
-      <DependentUpon>201903162122192_v1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903202207576_v1.resx">
+      <DependentUpon>201903202207576_v1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903182005172_edit-5.resx">
-      <DependentUpon>201903182005172_edit-5.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903241918560_v11.resx">
+      <DependentUpon>201903241918560_v11.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903202103552_edit-9.resx">
-      <DependentUpon>201903202103552_edit-9.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903242039327_v2.resx">
+      <DependentUpon>201903242039327_v2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903242041470_v3.resx">
+      <DependentUpon>201903242041470_v3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903251700379_v4.resx">
+      <DependentUpon>201903251700379_v4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903252206017_v5.resx">
+      <DependentUpon>201903252206017_v5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903252207086_v6.resx">
+      <DependentUpon>201903252207086_v6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903252236498_v7.resx">
+      <DependentUpon>201903252236498_v7.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

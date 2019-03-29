@@ -1,0 +1,46 @@
+﻿@model IEnumerable<GulfSeal.Models.slider_packeg>
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Delete</h2>
+
+<div>
+    <h4>slider_packeg</h4>
+    <hr />
+    <img src="@Model.FirstOrDefault().image_url" width="1000" height="500" />
+    @foreach (var item in Model)
+    {
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.slider_name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => item.slider_name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.sublider_name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => item.sublider_name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.lang_name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => item.lang_name)
+            </dd>
+        </dl>
+    }
+
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { simkey = Model.FirstOrDefault().semilarity_key }) |
+    @Html.ActionLink("Delete", "Delete_confirm", new { simkey = Model.FirstOrDefault().semilarity_key }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

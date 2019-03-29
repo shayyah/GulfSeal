@@ -1,0 +1,120 @@
+﻿@model IEnumerable<GulfSeal.Models.slider_packeg>
+
+@{
+    ViewBag.Title = "Edit";
+}
+<link href="~/Content/dropzone/dropzone.css" rel="stylesheet" />
+<script src="~/Content/dropzone/dropzone.js"></script>
+<script src="~/Content/dropzone/jquery-1.11.3.js"></script>
+
+
+<style>
+    .dropzone {
+        background-color: gray;
+        width: 100%;
+        align-content: center;
+        text-align: center;
+        color: black;
+    }
+</style>
+
+
+
+<h2>Edite Slider</h2>
+
+<form id="dropzoneForm" class="dropzone" method="post" enctype="multipart/form-data" action="~/Slider/Edit_post" style="height:100%;background-color:rgba(0, 0, 0, 0);padding-top: 30px;margin:20px 0 20px 0">
+    @Html.AntiForgeryToken()
+    <div class="dropzone-previews"></div> 
+    <input type="hidden" id="slider_data" name="slider_data" />
+</form>
+
+@foreach (var item in Model)
+{
+    <div class="input-group">
+        <span class="input-group-addon" id="basic-addon3">@item.lang_name slider</span>
+        <input type="text" class="form-control slider" value="@item.slider_name" id="@item.Id" aria-describedby="basic-addon3">
+    </div>
+    <div class="input-group" style="margin-top:20px">
+        <span class="input-group-addon" id="basic-addon3">@item.lang_name Sub slider</span>
+        <input type="text" class="form-control subslider" value="@item.sublider_name" id="Subslider_@item.Id" aria-describedby="basic-addon3">
+    </div>
+        <hr />
+}
+<button type="button" class="btn btn-success" id="upload" style="width:100%;margin-bottom:20px;">Upload !</button>
+
+
+
+
+<script>
+    var addedFile = true;
+    Dropzone.options.dropzoneForm = {
+        clickable: true,
+        autoProcessQueue: false,
+        dictDefaultMessage: "Add Slider image best size 1000*1000",
+        maxFiles: 1,
+        addRemoveLinks: true,
+        init: function () {
+
+                myDropzone = this;
+                this.on("addedfile", function (file) {
+                    addedFile = true;
+                }),
+                this.on("removedfile", function (file) {
+                    addedFile = false;
+                }),
+
+                this.on("success", function (data) {
+                   var url = '@Url.Action("Index", "Slider" )'
+                   location.href = url;
+                });
+                this.on("maxfilesexceeded", function (file) {
+                    this.removeFile(file);
+                });
+
+                var existingFiles = new Object({
+                        name: "current slider",
+                        size: 1,
+                        imageUrl: '@Model.FirstOrDefault().image_url'
+                });
+                myDropzone.emit("addedfile", existingFiles);
+                myDropzone.files.push(existingFiles);
+                myDropzone.createThumbnailFromUrl(existingFiles, existingFiles.imageUrl);
+        }
+    };
+
+
+</script>
+<script>
+
+    $('#upload').click(function () {
+
+        var slider_string = [];
+        $('.slider').each(function () {
+            var slider_id = $(this).attr("id");
+            var slider_val = $(this).val();
+            var subslider = $('#Subslider_' + slider_id).val();
+
+            var slider_pak = new Object();
+            slider_pak.Id = slider_id;
+            slider_pak.slider_name = slider_val;
+            slider_pak.sublider_name = subslider;
+            slider_pak.image_url='@Model.FirstOrDefault().image_url';
+            slider_string.push(slider_pak);
+
+        });
+        var jsonslider = JSON.stringify(slider_string);
+        $('#slider_data').val(jsonslider.toString());
+
+        if (myDropzone.getQueuedFiles().length > 0) {
+            myDropzone.processQueue();
+        }
+        else {
+            if (addedFile)
+                $('#dropzoneForm').submit();
+            else {
+                alert('Please Add slider image');
+            }
+        }
+    })
+
+</script>

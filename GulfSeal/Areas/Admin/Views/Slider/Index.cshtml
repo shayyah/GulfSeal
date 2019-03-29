@@ -1,0 +1,37 @@
+﻿@model IEnumerable<GulfSeal.Models.slider_packeg>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="table">
+    <tr>
+      
+        <th>
+            @Html.DisplayNameFor(model => model.image_url)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+      
+        <td>
+            <img src="@item.image_url" style="width:60px;height:60px;" />
+
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { simkey=item.semilarity_key }) |
+            @Html.ActionLink("Details", "Details", new { simkey = item.semilarity_key }) |
+            @Html.ActionLink("Delete", "Delete", new { simkey = item.semilarity_key })
+        </td>
+    </tr>
+}
+
+</table>

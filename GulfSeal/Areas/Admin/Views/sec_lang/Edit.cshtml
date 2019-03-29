@@ -1,0 +1,180 @@
+﻿@model IEnumerable<GulfSeal.Models.sec_lang>
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<link href="~/Content/dropzone/dropzone.css" rel="stylesheet" />
+<script src="~/Content/dropzone/dropzone.js"></script>
+<script src="~/Content/dropzone/jquery-1.11.3.js"></script>
+
+
+<style>
+    .dropzone {
+        background-color: gray;
+        width: 100%;
+        align-content: center;
+        text-align: center;
+        color: black;
+    }
+</style>
+
+
+<h2>Create</h2>
+
+
+
+<div class="form-group image" style="margin-top:100px;">
+    <form id="dropzoneForm" class="dropzone" method="post" enctype="multipart/form-data" action="~/sec_lang/Create" style="height:100%;background-color:rgba(0, 0, 0, 0);padding-top: 30px;margin:20px 0 20px 0">
+        @Html.AntiForgeryToken()
+        <div class="dropzone-previews"></div>
+        <input type="hidden" id="sec_lang" name="sec_lang" />
+    </form>
+</div>
+@{ 
+    List<GulfSeal.Models.Language> lang_list = ViewBag.lang_list;
+}
+
+
+<hr />
+@foreach (GulfSeal.Models.sec_lang a in Model)
+{
+    <div class="form-horizontal">
+        
+        @{ var lang_name = lang_list.Where(x => x.Id == a.langId).FirstOrDefault().Name;}
+        
+        <h4>@lang_name</h4>
+        <hr />
+
+        <input type="hidden" value="@a.Id" id="Id" name="Id" />
+        <input type="hidden" value="@a.langId" id="lang_@a.Id" name="Id" />
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group text">
+            @Html.LabelFor(model => a.title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => a.title, new { htmlAttributes = new { @class = "form-control text_", @id = a.Id } })
+                @Html.ValidationMessageFor(model => a.title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group body">
+            @Html.LabelFor(model => a.body, htmlAttributes: new { @class = "control-label col-md-2 " })
+            <div class="col-md-10">
+                @Html.EditorFor(model => a.body, new { htmlAttributes = new { @class = "form-control body_", @id = "body_" + @a.Id } })
+                @Html.ValidationMessageFor(model => a.body, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+
+
+}
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Create" id="upload" class="btn btn-default" />
+    </div>
+</div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script src="~/Content/dropzone/jquery-1.11.3.js"></script>
+
+<script>
+     var type ="@Model.FirstOrDefault().type.ToString()";
+    $(document).ready(function () {
+        if (type == "text") {
+            $('.image').hide();
+            $('.body').hide();
+            $('.text').show();
+        }
+        if (type == "image") {
+            $('.image').show();
+            $('.body').hide();
+            $('.text').hide();
+        }
+        if (type == "paragraph") {
+            $('.image').hide();
+            $('.body').show();
+            $('.text').show();
+        }
+        if (type == "sec") {
+            $('.image').show();
+            $('.body').show();
+            $('.text').show();
+        }
+    });
+
+
+
+
+    var collection = [];
+    $('#upload').click(function () {
+        alert('kkk');
+        var type = $('.type').val();
+        $('.text_').each(function (i, v) {
+            var title_id = $(this).attr('id');
+            var title = $('#' + title_id).val()
+            var body = $('#body_' + title_id).val()
+            
+            var obj = new Object();
+            obj.title = title;
+            obj.body = body;
+            obj.langId = $('#lang_' + title_id).val();
+            obj.page = $('.page').val();
+            obj.type = type;
+            collection.push(obj);
+        });
+
+       $('#sec_lang').val(JSON.stringify(collection));
+
+       if (type == "image") {
+
+           if (myDropzone.getQueuedFiles().length > 0) {
+               alert('kkk');
+               myDropzone.processQueue();
+           }
+           else {
+               alert('Add image please');
+           }
+       }
+    });
+
+
+
+</script>
+
+<script>
+    var addedFile = false;
+    Dropzone.options.dropzoneForm = {
+        clickable: true,
+        autoProcessQueue: false,
+        dictDefaultMessage: "Add sec image",
+        maxFiles: 1,
+        addRemoveLinks: true,
+        init: function () {
+            myDropzone = this;
+            this.on("addedfile", function (file) {
+                addedFile = true;
+            }),
+                this.on("removedfile", function (file) {
+                    addedFile = false;
+                }),
+
+                this.on("complete", function (data) {
+                    var url = '@Url.Action("Index", "sec_lang" )'
+                   location.href = url;
+                });
+
+             var existingFiles = new Object({
+                        name: "current slider",
+                        size: 1,
+                        imageUrl: '@Model.FirstOrDefault().image_url'
+                });
+                myDropzone.emit("addedfile", existingFiles);
+                myDropzone.files.push(existingFiles);
+                myDropzone.createThumbnailFromUrl(existingFiles, existingFiles.imageUrl);
+        }
+    };
+</script>

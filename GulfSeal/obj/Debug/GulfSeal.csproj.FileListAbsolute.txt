@@ -387,10 +387,19 @@ C:\Users\خالد\Desktop\Projects\GulfSeal\GulfSeal\bin\Microsoft.AI.Web.xml
 C:\Users\خالد\Desktop\Projects\GulfSeal\GulfSeal\obj\Debug\GulfSeal.csprojResolveAssemblyReference.cache
 C:\Users\خالد\Desktop\Projects\GulfSeal\GulfSeal\obj\Debug\GulfSeal.dll
 C:\Users\خالد\Desktop\Projects\GulfSeal\GulfSeal\obj\Debug\GulfSeal.pdb
-C:\Users\خالد\Desktop\Projects\GulfSeal\GulfSeal\obj\Debug\GulfSeal.Migrations.v1.resources
-C:\Users\خالد\Desktop\Projects\GulfSeal\GulfSeal\obj\Debug\GulfSeal.csproj.GenerateResource.Cache
 C:\Users\Muhammad\Documents\Visual Studio 2017\Projects\GulfSeal\GulfSeal\GulfSeal\obj\Debug\GulfSeal.Migrations.edit2.resources
 C:\Users\Muhammad\Documents\Visual Studio 2017\Projects\GulfSeal\GulfSeal\GulfSeal\obj\Debug\GulfSeal.csproj.GenerateResource.Cache
 C:\Users\Muhammad\Documents\Visual Studio 2017\Projects\GulfSeal\GulfSeal\GulfSeal\obj\Debug\GulfSeal.Migrations.edit5.resources
 C:\Users\Muhammad\Documents\Visual Studio 2017\Projects\GulfSeal\GulfSeal\GulfSeal\obj\Debug\GulfSeal.csprojResolveAssemblyReference.cache
 C:\Users\Muhammad\Documents\Visual Studio 2017\Projects\GulfSeal\GulfSeal\GulfSeal\obj\Debug\GulfSeal.Migrations.edit9.resources
+C:\Users\خالد\Desktop\Projects\GulfSeal\GulfSeal\obj\Debug\GulfSeal.Migrations.v1.resources
+C:\Users\خالد\Desktop\Projects\GulfSeal\GulfSeal\obj\Debug\GulfSeal.csproj.GenerateResource.Cache
+C:\Users\خالد\Desktop\Projects\GulfSeal\GulfSeal\obj\Debug\GulfSeal.Migrations.v11.resources
+C:\Users\خالد\Desktop\Projects\GulfSeal\GulfSeal\obj\Debug\GulfSeal.Migrations.v2.resources
+C:\Users\خالد\Desktop\Projects\GulfSeal\GulfSeal\obj\Debug\GulfSeal.Migrations.v3.resources
+C:\Users\خالد\Desktop\Projects\GulfSeal\GulfSeal\bin\MoreLinq.Portable.dll
+C:\Users\خالد\Desktop\Projects\GulfSeal\GulfSeal\bin\MoreLinq.Portable.xml
+C:\Users\خالد\Desktop\Projects\GulfSeal\GulfSeal\obj\Debug\GulfSeal.Migrations.v4.resources
+C:\Users\خالد\Desktop\Projects\GulfSeal\GulfSeal\obj\Debug\GulfSeal.Migrations.v5.resources
+C:\Users\خالد\Desktop\Projects\GulfSeal\GulfSeal\obj\Debug\GulfSeal.Migrations.v6.resources
+C:\Users\خالد\Desktop\Projects\GulfSeal\GulfSeal\obj\Debug\GulfSeal.Migrations.v7.resources
