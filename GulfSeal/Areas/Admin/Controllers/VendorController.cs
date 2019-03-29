@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace GulfSeal.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin,Editor")]
     public class VendorController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

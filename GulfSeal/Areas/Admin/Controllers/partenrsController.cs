@@ -12,6 +12,7 @@ using System.Web.Script.Serialization;
 
 namespace GulfSeal.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin,Editor")]
     public class partenrsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

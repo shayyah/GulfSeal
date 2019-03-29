@@ -11,6 +11,7 @@ using System.Web.Mvc;
 
 namespace GulfSeal.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin,Editor")]
     public class InformationController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

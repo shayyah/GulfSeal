@@ -10,6 +10,7 @@ using GulfSeal.Models;
 
 namespace GulfSeal.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin,Editor")]
     public class FamiliesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
