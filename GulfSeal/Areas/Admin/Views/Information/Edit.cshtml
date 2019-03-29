@@ -20,38 +20,76 @@
     }
 </style>
 
-<h2>Edit</h2>
+
+<div class="page">
+    <div class="page-single">
+        <div class="container">
+            <div class="row">
+                <div class="col col-md-10 mx-auto">
 
 
-<div class="form-group">
-    <label class="control-label col-md-2">Title</label>
-    <div class="col-md-10">
-        <input type="text" name="TitleTemp" id="TitleTemp" class="form-control" value="@Model.Title" />
-    </div>
-</div>
+                    <div class="card">
 
-<div class="form-group">
-    <div style="margin-left:20px;margin-right:20px;">
-        <form action="../../Information/Edit" enctype="multipart/form-data" method="post" id="my-awesome-dropzone" class="dropzone col-md-10">
-            <div class="dropzone-previews "></div>
-            <input type="hidden" name="InformationTypeId" value="@Model.InformationTypeId" />
-            <input type="hidden" name="Title" id="Title" />
-            <input type="hidden" name="Id" id="Id" value="@Model.Id" />
+                        @Html.AntiForgeryToken()
+                        <div class="modal-body">
+
+                            <div class="text-center mb-6">
+                                <h2 style="color:#4A4A4A;padding-top:20px;font-size:22px;">Create New Inforamtion</h2>
+                            </div>
 
 
-        </form>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" id="ss" value="Edit" class="btn btn-default" />
+                            <div class="form-horizontal">
+
+
+                                <div class="row" style="padding-left:30px;padding-right:30px;padding-top:16px;">
+
+
+
+                                    <div class="form-group col-md-4">
+                                        <div style="margin-left:20px;margin-right:20px;">
+                                            <form action="../../Information/Edit" enctype="multipart/form-data" method="post" id="my-awesome-dropzone" class="dropzone col-md-10">
+                                                <div class="dropzone-previews "></div>
+                                                <input type="hidden" name="InformationTypeId" value="@Model.InformationTypeId" />
+                                                <input type="hidden" name="Title" id="Title" />
+                                                <input type="hidden" name="Id" id="Id" value="@Model.Id" />
+
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                   
+
+
+                                    <div class="form-group col-md-4" style="display:inline-block">
+                                        <label class="form-label">Title</label>
+                                        
+                                        <input type="text" name="TitleTemp" id="TitleTemp" class="form-control" value="@Model.Title" />
+                                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+
+
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <input type="submit" id="ss" value="Create" class="btn btn-default" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+
+
+                </div>
             </div>
         </div>
     </div>
 </div>
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-
 
 
 

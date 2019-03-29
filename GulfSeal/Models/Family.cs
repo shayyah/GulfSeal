@@ -13,6 +13,7 @@ namespace GulfSeal.Models
         {
             CreatedAt = DateTime.Now;
             LastUpdatedAt = DateTime.Now;
+            Rank = 0;
         }
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

@@ -3,78 +3,132 @@
 @{
     ViewBag.Title = "Index";
 }
- 
- 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastUpdatedAt)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model)
-{
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastUpdatedAt)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
 
-    foreach (var product in item.Products.OrderByDescending(x=>x.Rank))
-    {
+    
+<div class="my-3 my-md-5">
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">
+                Families
+            </h1>
+        </div>
+        <div class="row row-cards row-deck">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
 
-        <tr>
-            <td>
-                <img src="@product.Link" style="width:75px;height:75px;" />
-            </td>
-            <td>
-                @product.Type
-            </td>
-            <td>
-                @product.Name
-            </td>
-            <td>
-                @product.Thickness
-            </td>
-            <td>
-                @product.Length
-            </td>
-            <td>
-                @product.Width
-            </td>
-            <td>
-                @product.ReinforcedType
-            </td>
-            <td>
-                @product.ReinforcedDensity
-            </td>
-            <td>
-                @product.ServiceType
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "EditProductLanguages","Products", new { id = item.Id, Area="admin" },null) | 
-                @Html.ActionLink("Delete", "Delete", "Products", new { id = item.Id, Area = "admin" }, null)
-            </td>
-        </tr>
-    } 
+                            <a href="@Url.Action("Create","Families")" class="btn btn-primary btn-sm"
+                               style="color:#ffffff">
+                                <span class="fa fa-plus"></span>
+                                Create New Family
+                            </a>
+
+                        </h3>
+
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table card-table table-vcenter text-nowrap" id="FamiliesTable">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Title)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CreatedAt)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.LastUpdatedAt)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr style="background-color:lightgray">
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Title)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CreatedAt)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LastUpdatedAt)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                        </td>
+                                    </tr>
+
+
+                                    foreach (var product in item.Products.OrderByDescending(x => x.Rank))
+                                    {
+
+                                        <tr>
+                                            <td>
+                                                <img src="@product.Link" style="width:75px;height:75px;" />
+                                            </td>
+                                            <td>
+                                                @product.Type
+                                            </td>
+                                            <td>
+                                                @product.Name
+                                            </td>
+                                            
+                                            <td>
+                                                @product.Thickness/
+                                                @product.Length/
+                                                @product.Width
+                                            </td>
+                                         
+                                            <td>
+                                                @product.ReinforcedType
+                                            </td>
+                                            <td>
+                                                @product.ReinforcedDensity
+                                            </td>
+                                            <td>
+                                                @product.ServiceType
+                                            </td>
+                                            <td>
+                                                @Html.ActionLink("Edit", "EditProductLanguages", "Products", new { id = item.Id, Area = "admin" }, null) |
+                                                @Html.ActionLink("Delete", "Delete", "Products", new { id = item.Id, Area = "admin" }, null)
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts {
+
+    <script>
+        require(['jquery', 'selectize'], function ($, selectize) {
+
+
+
+            $(document).ready(function () {
+                $('#FamiliesTable').DataTable({ fixedHeader: true, aaSorting: [] });
+            });
+
+
+        });
+    </script>
+
 }
-
-</table>

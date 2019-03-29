@@ -11,6 +11,7 @@ using System.Web.Mvc;
 
 namespace GulfSeal.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin,Editor")]
     public class InformationController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -245,6 +246,34 @@ namespace GulfSeal.Areas.Admin.Controllers
             return RedirectToAction("Edit", "Information", new { id = informationId, area = "Admin" });
         }
 
+
+
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Information Information = db.Informations.Find(id);
+            if (Information == null)
+            {
+                return HttpNotFound();
+            }
+            return View(Information);
+        }
+
+        // POST: Admin/InformationTypes/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Information Information = db.Informations.Find(id);
+            int InformationTypeId = Information.InformationTypeId;
+            db.Informations.Remove(Information);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Information", new { area="Admin", InformationTypeId  = InformationTypeId });
+
+        }
 
     }
 }

@@ -4,54 +4,106 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create","Information",new { InformationTypeId  = ViewBag.InformationTypeId },null)
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.InformationType.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.InformationURL)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastUpdatedAt)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.InformationType.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.InformationURL)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastUpdatedAt)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+
+<div class="my-3 my-md-5">
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">
+                Informations
+            </h1>
+        </div>
+        <div class="row row-cards row-deck">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+
+                            <a href="@Url.Action("Create","Information", new { InformationTypeId = ViewBag.InformationTypeId })" class="btn btn-primary btn-sm"
+                               style="color:#ffffff">
+                                <span class="fa fa-plus"></span>
+                                Create New Information
+                            </a>
+
+                        </h3>
+
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table card-table table-vcenter text-nowrap" id="InformationsTable">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.InformationType.Title)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Title)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.InformationURL)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CreatedAt)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.LastUpdatedAt)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.InformationType.Title)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Title)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.InformationURL)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CreatedAt)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LastUpdatedAt)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts {
+
+    <script>
+        require(['jquery', 'selectize'], function ($, selectize) {
+
+
+
+            $(document).ready(function () {
+                $('#InformationsTable').DataTable({ fixedHeader: true, aaSorting: [] });
+            });
+
+
+        });
+    </script>
+
 }
-
-</table>

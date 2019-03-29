@@ -1,0 +1,53 @@
+﻿@model GulfSeal.Areas.Admin.Models.ViewModels.ProjectTranslationsViewModel
+@{
+    ViewBag.Title = "Create Content";
+}
+
+<h2>Create Content</h2>
+
+
+
+
+<form action="~/Projects/EditProjectTranslation" method="post">
+
+    @Html.AntiForgeryToken()
+
+    <input type="hidden" name="projectId" value="@ViewBag.projectId" />
+
+    <div class="form-horizontal">
+        <h4>Languages </h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @{ int i = 0;}
+        @foreach (var translation in Model.ProjectTranslationsWithLanguages)
+        {
+
+            <div class="form-group">
+                @translation.LanguageName
+            </div>
+
+            <input type="hidden" id="ProjectTranslationsWithLanguages_@(i)__ProjectTranslation_LanguageId" name="ProjectTranslationsWithLanguages[@(i)].ProjectTranslation.LanguageId" value="@translation.LanguageId" />
+            <input type="hidden" id="ProjectTranslationsWithLanguages_@(i)__ProjectTranslation_ProjectId" name="ProjectTranslationsWithLanguages[@(i)].ProjectTranslation.ProjectId" value="@ViewBag.ProjectId" />
+
+
+            <div class="form-group">
+                Name
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ProjectTranslationsWithLanguages[i].ProjectTranslation.Title, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+
+            i = i + 1;
+        }
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+

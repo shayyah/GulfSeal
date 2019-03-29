@@ -1,0 +1,58 @@
+﻿@model GulfSeal.Areas.Admin.Models.ViewModels.StaticTranslationsViewModel
+@{
+    ViewBag.Title = "Create Content";
+}
+
+<h2>Create Content</h2>
+
+
+
+
+<form action="~/StaticContents/EditStaticTranslation" method="post">
+
+    @Html.AntiForgeryToken()
+
+    <input type="hidden" name="staticId" value="@ViewBag.staticId" />
+
+    <div class="form-horizontal">
+        <h4>Languages </h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @{ int i = 0;}
+        @foreach (var translation in Model.StaticTranslationsWithLanguages)
+        {
+
+            <div class="form-group">
+                @translation.LanguageName
+            </div>
+
+            <input type="hidden" id="StaticTranslationsWithLanguages_@(i)__StaticContentTranslation_LanguageId" name="StaticTranslationsWithLanguages[@(i)].StaticContentTranslation.LanguageId" value="@translation.LanguageId" />
+            <input type="hidden" id="StaticTranslationsWithLanguages_@(i)__StaticContentTranslation_StaticContentId" name="StaticTranslationsWithLanguages[@(i)].StaticContentTranslation.StaticContentId" value="@ViewBag.staticId" />
+
+
+            <div class="form-group">
+                About
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.StaticTranslationsWithLanguages[i].StaticContentTranslation.About, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group">
+                Privacy
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.StaticTranslationsWithLanguages[i].StaticContentTranslation.Privacy, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+            i = i + 1;
+        }
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+

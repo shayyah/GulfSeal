@@ -17,9 +17,10 @@ namespace GulfSeal
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                namespaces: new string[] { "GulfSeal.Controllers" }
-
+                namespaces: 
+                new[] { "GulfSeal.Controllers" }
             );
+            
         }
     }
 }

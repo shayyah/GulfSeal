@@ -10,6 +10,7 @@ using GulfSeal.Models;
 
 namespace GulfSeal.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin,Editor")]
     public class InformationTypesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -44,7 +45,7 @@ namespace GulfSeal.Areas.Admin.Controllers
             {
                 db.InformationTypes.Add(informationType);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "InformationTypes", new { area = "Admin" });
             }
 
             return View(informationType);

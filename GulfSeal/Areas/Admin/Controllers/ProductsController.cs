@@ -12,6 +12,7 @@ using GulfSeal.Areas.Admin.Models.ViewModels;
 
 namespace GulfSeal.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin,Editor")]
     public class ProductsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

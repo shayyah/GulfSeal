@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace GulfSeal.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class LanguageController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

@@ -1,0 +1,68 @@
+﻿@model IEnumerable<GulfSeal.Models.StaticContent>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+
+
+
+<div class="my-3 my-md-5">
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">
+                Static Contents
+            </h1>
+        </div>
+        <div class="row row-cards row-deck">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                      
+
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table card-table table-vcenter text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.About)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Privacy)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.About)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Privacy)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                            @Html.ActionLink("Edit Static Translation", "EditStaticTranslation", new { staticId = item.Id }) |
+                                            @Html.ActionLink("Details", "Details", new { id = item.Id })
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

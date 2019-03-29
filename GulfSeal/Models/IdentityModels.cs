@@ -44,9 +44,10 @@ namespace GulfSeal.Models
         public DbSet<Information> Informations { get; set; }
         public DbSet<InformationTranslation> InformationTranslations { get; set; }
         public DbSet<slider_packeg> slider_packegs { get; set; }
-
         public DbSet<sec_lang> sec_langs { get; set; }
-
-        
+        public DbSet<Project> Projects { get; set; }
+        public DbSet<ProjectTranslation> ProjectTranslations { get; set; }
+        public DbSet<StaticContent> StaticContents { get; set; }
+        public DbSet<StaticContentTranslation> StaticContentTranslations { get; set; }
     }
 }

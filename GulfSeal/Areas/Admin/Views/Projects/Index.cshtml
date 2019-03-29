@@ -1,0 +1,115 @@
+﻿@model IEnumerable<GulfSeal.Models.Project>
+
+@{
+    ViewBag.Title = "Index";
+}
+ 
+
+
+
+<div class="my-3 my-md-5">
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">
+                Projects
+            </h1>
+        </div>
+        <div class="row row-cards row-deck">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">
+
+                            <a href="@Url.Action("Create","Projects")" class="btn btn-primary btn-sm"
+                               style="color:#ffffff">
+                                <span class="fa fa-plus"></span>
+                                Create New Project
+                            </a>
+
+                        </h3>
+
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table card-table table-vcenter text-nowrap" id="ProjectsTable">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Image
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Rank)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Title)
+                                    </th>
+                                    <th>
+                                        Type
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CreatedAt)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.LastUpdatedAt)
+                                    </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <img src="@item.ImageURL" style="width:80px;height:80px;" />
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Rank)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Title)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ProjectType)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CreatedAt)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LastUpdatedAt)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                            @Html.ActionLink("Edit Project Translation", "EditProjectTranslation", new { projectId = item.Id }) |
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts {
+
+    <script>
+        require(['jquery', 'selectize'], function ($, selectize) {
+
+
+
+            $(document).ready(function () {
+                $('#ProjectsTable').DataTable({ fixedHeader: true, aaSorting: [] });
+            });
+
+
+        });
+    </script>
+
+}

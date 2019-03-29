@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace GulfSeal.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin,Editor")]
     public class HomeController : Controller
     {
         // GET: Admin/Home
