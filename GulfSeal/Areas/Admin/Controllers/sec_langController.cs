@@ -12,6 +12,7 @@ using System.IO;
 
 namespace GulfSeal.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin,Editor")]
     public class sec_langController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

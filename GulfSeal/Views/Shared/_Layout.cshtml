@@ -34,7 +34,7 @@
 
                             <!-- logo begin -->
                             <div id="logo" class="pull-left">
-                                <a href="index.html">
+                                <a href="../../Home/Index">
                                     <img src="~/Content/them/images/logo.png" alt="" class="logo">
                                 </a>
                             </div>
@@ -51,49 +51,38 @@
                             <nav id="desktop-menu" class="site-desktop-menu hidden-xs hidden-sm">
                                 <ul class="clearfix">
                                     <li class="active">
-                                        <a href="index.html">Home</a>
+                                        <a href="../../Home/Index">Home</a>
                                     </li>
                                     <li>
-                                        <a href="#">Gulf Seal LTD</a>
-                                        <ul>
-                                            <li><a href="comingsoon.html">About Us</a></li>
-                                            <li><a href="404.html">privacy & Legal</a></li>
-                                            <li><a href="404.html">Projects</a></li>
+                                        <a>Gulf Seal LTD</a>
+                                        <ul> 
+                                             
+                                            @Html.Action("Index", "StaticContent")
+                                            <li><a href="../../Projects/Index">Projects</a></li>
                                            
                                         </ul>
                                     </li>
+                                    
                                     <li>
-                                        <a href="#">Information</a>
+                                        <a>Information</a>
+
                                         <ul>
-                                            <li><a href="about.html">Data Sheets</a></li>
-                                            <li><a href="service.html">Technical Drawings</a></li>
-                                            <li><a href="pricing.html"> ISO Certificates</a></li>
-                                            <li><a href="typography.html">Video Library</a></li>
-                                            <li><a href="element.html">products</a></li>
-                                            <li><a href="faqs.html">FAQs</a></li>
+                                            @Html.Action("Index", "InformationTypes")
                                         </ul>
-                                    </li>
+                                        
+                                    </li> 
                                     <li>
-                                        <a href="projects.html">Application</a>
-                                       
-                                    </li>
-                                    <li>
-                                        <a href="#">News</a>
+                                        <a href="../../Article/Index">News</a>
                                         
                                     </li>
                                     <li>
-                                        <a href="blog.html">Agents & distributors</a>
+                                        <a href="../../Vendor/Index">Agents & distributors</a>
                                     </li>
                                     <li>
                                         <a href="#">Carees</a>
                                     </li>
                                 </ul>
-                            </nav>
-                            <!-- desktop menu close -->
-                            <!-- Header Group Button Right begin -->
-                            
-                            <!-- Header Group Button Right close -->
-
+                            </nav>  
                         </div>
                     </div>
                 </div>
@@ -252,8 +241,8 @@
 
 
         @*@Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)*@
+    @Scripts.Render("~/bundles/bootstrap")*@
+        @RenderSection("scripts", required: false)
 </body>
 </html>
 

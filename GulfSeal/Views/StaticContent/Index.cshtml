@@ -1,0 +1,11 @@
+﻿@model IEnumerable<GulfSeal.Models.StaticContent>
+     
+
+@foreach (var item in Model)
+{
+
+    <li><a href="../../StaticContent/About">@Html.DisplayNameFor(model => model.About)</a></li>
+    <li><a href="../../StaticContent/Privacy">@Html.DisplayNameFor(model => model.Privacy)</a></li>
+
+}
+ 

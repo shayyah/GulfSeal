@@ -1,0 +1,9 @@
+﻿@model IEnumerable<GulfSeal.Models.InformationType>
+
+
+
+
+@foreach (var item in Model)
+{
+    <li><a href="../../Information/Index?InformationTypeId=@(item.Id)">@item.Title</a></li>
+}

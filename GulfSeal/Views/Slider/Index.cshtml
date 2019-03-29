@@ -1,0 +1,63 @@
+﻿@model IEnumerable<GulfSeal.Models.slider_packeg>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.slider_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sublider_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lang_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lang_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.image_url)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.semilarity_key)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.slider_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sublider_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lang_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lang_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.image_url)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.semilarity_key)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

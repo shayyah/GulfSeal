@@ -213,19 +213,33 @@
     <Compile Include="Areas\Admin\Models\ViewModels\ProjectViewModels.cs" />
     <Compile Include="Areas\Admin\Models\ViewModels\StaticTranslationsViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ArticleController.cs" />
+    <Compile Include="Controllers\FamiliesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InformationController.cs" />
+    <Compile Include="Controllers\InformationTypesController.cs" />
+    <Compile Include="Controllers\LanguageController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\partenrsController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\ProjectsController.cs" />
+    <Compile Include="Controllers\sec_langController.cs" />
+    <Compile Include="Controllers\SliderController.cs" />
+    <Compile Include="Controllers\StaticContentController.cs" />
+    <Compile Include="Controllers\VendorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903291529547_edit1.cs" />
-    <Compile Include="Migrations\201903291529547_edit1.Designer.cs">
-      <DependentUpon>201903291529547_edit1.cs</DependentUpon>
+    <Compile Include="Migrations\201903291536074_edit22.cs" />
+    <Compile Include="Migrations\201903291536074_edit22.Designer.cs">
+      <DependentUpon>201903291536074_edit22.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\ArticleContent.cs" />
+    <Compile Include="Models\CareerTranslation.cs" />
+    <Compile Include="Models\Carrer.cs" />
     <Compile Include="Models\Family.cs" />
     <Compile Include="Models\FamilyTransition.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -251,9 +265,20 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Css\app.css" />
+    <Content Include="Content\Css\bootstrap.min.css" />
+    <Content Include="Content\Css\dashboard.css" />
+    <Content Include="Content\Css\hover-min.css" />
+    <Content Include="Content\Css\parsley.css" />
+    <Content Include="Content\Css\smart-table.min.css" />
     <Content Include="Content\dropzone\dropzone.css" />
     <Content Include="Content\dropzone\dropzone.js" />
     <Content Include="Content\dropzone\jquery-1.11.3.js" />
+    <Content Include="Content\fonts\feather\feather-webfont.svg" />
+    <Content Include="Content\fonts\GE SS Two Bold.svg" />
+    <Content Include="Content\fonts\GE SS Two Medium.svg" />
+    <Content Include="Content\fonts\Gotham-Black.svg" />
+    <Content Include="Content\fonts\Tahoma.svg" />
     <Content Include="Content\Img\loader.gif" />
     <Content Include="Content\Img\loader1.gif" />
     <Content Include="Content\Img\map\m1.png" />
@@ -265,6 +290,25 @@
     <Content Include="Content\Img\map\markerD.png" />
     <Content Include="Content\Img\map\markerS.png" />
     <Content Include="Content\Img\marker.png" />
+    <Content Include="Content\Js\core.js" />
+    <Content Include="Content\Js\dashboard.js" />
+    <Content Include="Content\Js\require.min.js" />
+    <Content Include="Content\Js\smart-table.min.js" />
+    <Content Include="Content\Js\vendors\bootstrap.bundle.min.js" />
+    <Content Include="Content\Js\vendors\chart.bundle.min.js" />
+    <Content Include="Content\Js\vendors\circle-progress.min.js" />
+    <Content Include="Content\Js\vendors\dataTables.bootstrap4.min.js" />
+    <Content Include="Content\Js\vendors\Datatables.js" />
+    <Content Include="Content\Js\vendors\jquery-3.2.1.min.js" />
+    <Content Include="Content\Js\vendors\jquery-3.2.1.slim.min.js" />
+    <Content Include="Content\Js\vendors\jquery-jvectormap-2.0.3.min.js" />
+    <Content Include="Content\Js\vendors\jquery-jvectormap-de-merc.js" />
+    <Content Include="Content\Js\vendors\jquery-jvectormap-world-mill.js" />
+    <Content Include="Content\Js\vendors\jquery.dataTables.min.js" />
+    <Content Include="Content\Js\vendors\jquery.sparkline.min.js" />
+    <Content Include="Content\Js\vendors\jquery.tablesorter.min.js" />
+    <Content Include="Content\Js\vendors\parsley.min.js" />
+    <Content Include="Content\Js\vendors\selectize.min.js" />
     <Content Include="Content\markerclusterer.js" />
     <Content Include="Content\them\css\animate.css" />
     <Content Include="Content\them\css\bg-image.css" />
@@ -673,6 +717,26 @@
     <Content Include="Files\Technical Datasheet\717db487-4b87-4ca7-88db-ae210a9f4520.pdf" />
     <Content Include="Files\Technical Datasheet\7832aac7-566f-4f96-9e38-41f2db21e073.pdf" />
     <Content Include="Files\Technical Datasheet\99858b81-783a-4575-bcd8-d89e17e8f6e1.pdf" />
+    <Content Include="Content\fonts\feather\feather-webfont.eot" />
+    <Content Include="Content\fonts\feather\feather-webfont.ttf" />
+    <Content Include="Content\fonts\feather\feather-webfont.woff" />
+    <Content Include="Content\fonts\GE SS Two Bold.eot" />
+    <Content Include="Content\fonts\GE SS Two Bold.ttf" />
+    <Content Include="Content\fonts\GE SS Two Bold.woff" />
+    <Content Include="Content\fonts\GE SS Two Medium.eot" />
+    <Content Include="Content\fonts\GE SS Two Medium.ttf" />
+    <Content Include="Content\fonts\GE SS Two Medium.woff" />
+    <Content Include="Content\fonts\GEThameen-Book.woff" />
+    <Content Include="Content\fonts\GEThameen-Book.woff2" />
+    <Content Include="Content\fonts\GEThameen-DemiBold.woff" />
+    <Content Include="Content\fonts\GEThameen-DemiBold.woff2" />
+    <Content Include="Content\fonts\Gotham-Black.eot" />
+    <Content Include="Content\fonts\Gotham-Black.ttf" />
+    <Content Include="Content\fonts\Gotham-Black.woff" />
+    <Content Include="Content\fonts\Tahoma.eot" />
+    <Content Include="Content\fonts\Tahoma.otf" />
+    <Content Include="Content\fonts\Tahoma.ttf" />
+    <Content Include="Content\fonts\Tahoma.woff" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -722,6 +786,20 @@
     <Content Include="Areas\Admin\Views\Article\UploadFiles.cshtml" />
     <Content Include="Areas\Admin\Views\Article\Details.cshtml" />
     <Content Include="Views\Projects\LastProjects.cshtml" />
+    <Content Include="Views\Projects\Index.cshtml" />
+    <Content Include="Views\Article\Index.cshtml" />
+    <Content Include="Views\Families\Index.cshtml" />
+    <Content Include="Views\Information\Index.cshtml" />
+    <Content Include="Views\InformationTypes\Index.cshtml" />
+    <Content Include="Views\Language\Index.cshtml" />
+    <Content Include="Views\partenrs\Index.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\sec_lang\Index.cshtml" />
+    <Content Include="Views\Slider\Index.cshtml" />
+    <Content Include="Views\StaticContent\Index.cshtml" />
+    <Content Include="Views\Vendor\Index.cshtml" />
+    <Content Include="Views\StaticContent\About.cshtml" />
+    <Content Include="Views\StaticContent\Privacy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -743,8 +821,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903291529547_edit1.resx">
-      <DependentUpon>201903291529547_edit1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201903291536074_edit22.resx">
+      <DependentUpon>201903291536074_edit22.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,25 +1,23 @@
 ﻿using GulfSeal.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
 namespace GulfSeal.Controllers
-{
-    public class ProjectsController : Controller
+{  
+    public class VendorController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        // GET: Projects
-
+        // GET: Admin/Vendor
         public ActionResult Index()
         {
-            return View(db.Projects.ToList());
+            return View(db.Vendors.ToList());
         }
 
-        public ActionResult LastProjects()
-        {
-            return PartialView(db.Projects.OrderByDescending(x=>x.Rank).Take(6).ToList());
-        }
+       
     }
 }
